@@ -1,0 +1,25 @@
+:root {
+	// FONTS
+	--font-primary: "Montserrat", "Arial", sans-serif;
+	--font-secondary: "Unbounded", "Arial", sans-serif;
+
+	//COLORS
+	--primary: #ff1601;
+	--secondary: #4ba6a9;
+
+	--fc-dark: #121d2e;
+	--fc-light: #fff;
+
+	--bg-primary: #fff;
+
+	//Transition
+	--transition: all 0.3s ease;
+
+	//Z-index
+	--ui-index-1: 1; // Для наползающих элементов в общем потоке
+	--ui-index-2: 2; // Для наползающих элементов в общем потоке
+	--ui-index-3: 3; // Для масок
+	--ui-index-4: 4; // Для сайдбаров
+	--ui-index-5: 5; // Для модалок
+	--ui-index-6: 6; // Для эдементов, перекрывающих все
+}

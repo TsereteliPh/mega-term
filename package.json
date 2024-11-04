@@ -1,0 +1,35 @@
+{
+	"name": "mega-term",
+	"version": "1.0.0",
+	"description": "MEGA-TERM",
+	"repository": "github:TsereteliPh/mega-term.git",
+	"scripts": {},
+	"author": "Tsereteli Philipp <filipptsereteli@yandex.ru>",
+	"license": "ISC",
+	"browserslist": [
+		"extends @wordpress/browserslist-config"
+	],
+	"devDependencies": {
+		"@wordpress/browserslist-config": "^4.1.2",
+		"@wordpress/stylelint-config": "^20.0.2",
+		"autoprefixer": "^10.4.4",
+		"browser-sync": "^2.27.9",
+		"gulp": "^4.0.2",
+		"gulp-newer": "^1.4.0",
+		"gulp-postcss": "^9.0.1",
+		"gulp-rename": "^2.0.0",
+		"gulp-sass": "^5.1.0",
+		"gulp-uglify": "^3.0.2",
+		"postcss": "^8.4.12",
+		"postcss-csso": "^6.0.0",
+		"postcss-sort-media-queries": "^4.2.1",
+		"sass": "^1.50.0",
+		"stylelint": "^14.6.1",
+		"stylelint-config-rational-order": "^0.1.2"
+	},
+	"dependencies": {
+		"@fancyapps/ui": "^4.0.26",
+		"normalize.css": "^8.0.1",
+		"swiper": "^10.0.0"
+	}
+}
