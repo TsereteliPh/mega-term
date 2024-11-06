@@ -1,0 +1,95 @@
+.btn {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+	padding: 15px 25px;
+	color: var(--fc-light);
+	font-weight: 700;
+	font-family: var(--font-secondary);
+	line-height: 1;
+	text-align: left;
+	text-decoration: none;
+	background: var(--fc-dark);
+	border: none;
+	border-radius: 10px;
+	transition: var(--transition);
+
+	@include mouse {
+
+		&:hover {
+			transform: translateY(-3px);
+		}
+	}
+
+	&--thic {
+		position: relative;
+		justify-content: start;
+		min-height: 60px;
+		padding: 10px 35px 10px 20px;
+		line-height: 1.3;
+
+		svg {
+			position: absolute;
+			right: 20px;
+			bottom: 20px;
+		}
+	}
+
+	&--square {
+		position: relative;
+		width: 65px;
+		height: 60px;
+		padding: 10px;
+		color: var(--fc-dark);
+		background: var(--bg-secondary);
+
+		@include xs {
+			width: 40px;
+			height: 40px;
+		}
+
+		@include mouse {
+
+			&:hover {
+				color: var(--primary);
+			}
+		}
+
+		svg {
+
+			@include xs {
+				width: 15px;
+				height: auto;
+			}
+		}
+	}
+
+	&__counter {
+		position: absolute;
+		top: 1px;
+		right: 1px;
+		display: none;
+		place-content: center;
+		width: 20px;
+		height: auto;
+		aspect-ratio: 1/1;
+		padding: 4px;
+		color: var(--fc-light);
+		font-weight: 700;
+		font-size: 10px;
+		font-family: var(--font-primary);
+		background: var(--fc-dark);
+		border-radius: 50%;
+
+		@include xs {
+			top: -5px;
+			right: -5px;
+			font-size: 8px;
+		}
+
+		&.active {
+			display: grid;
+		}
+	}
+}
