@@ -65,6 +65,25 @@
 		}
 	}
 
+	&--thin {
+		padding: 20px;
+		color: var(--fc-dark);
+		font-weight: 300;
+		background: none;
+		border: 1px solid #d9d9d9;
+
+		@include mouse {
+
+			&:hover {
+				border-color: var(--primary);
+			}
+		}
+
+		svg {
+			color: var(--primary);
+		}
+	}
+
 	&__counter {
 		position: absolute;
 		top: 1px;
@@ -91,5 +110,22 @@
 		&.active {
 			display: grid;
 		}
+	}
+}
+
+.btn-accordion {
+	display: grid;
+	place-content: center;
+	flex-shrink: 0;
+	width: 35px;
+	height: auto;
+	aspect-ratio: 1/1;
+	color: var(--fc-light);
+	background: var(--primary);
+	border-radius: 10px;
+	transition: var(--transition);
+
+	@include xs {
+		width: 30px;
 	}
 }

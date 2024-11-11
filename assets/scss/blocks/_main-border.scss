@@ -1,0 +1,73 @@
+.main-border {
+	position: relative;
+	border: 1px solid var(--fc-gray);
+	border-radius: 10px;
+	transition: var(--transition);
+
+	@include mouse {
+
+		&:hover {
+			border-color: var(--primary);
+		}
+	}
+
+	&::before,
+	&::after {
+		position: absolute;
+		width: 1px;
+		height: calc(100% - 20px);
+		background: var(--bg-primary);
+		transition: var(--transition);
+		content: "";
+	}
+
+	&::before {
+		bottom: 10px;
+		left: -1px;
+	}
+
+	&::after {
+		top: 10px;
+		right: -1px;
+	}
+
+	&--hover {
+
+		@include mouse {
+
+			&:hover {
+
+				&::before,
+				&::after {
+					height: 10px;
+				}
+			}
+		}
+	}
+
+	&--half {
+		border-top: none;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+
+		&::before,
+		&::after {
+			height: calc(100% - 10px);
+		}
+
+		&::after {
+			top: 0;
+		}
+
+		@include mouse {
+
+			&:hover {
+
+				&::before,
+				&::after {
+					height: calc(100% - 10px);
+				}
+			}
+		}
+	}
+}

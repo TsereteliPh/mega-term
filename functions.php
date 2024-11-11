@@ -38,32 +38,32 @@ if ( ! function_exists( 'adem_setup' ) ) {
 //	add_image_size( '123x123', 123, 123, true );
 
 	//	register post types
-//	register_post_type( 'review', [
-//		'label' => null,
-//		'labels' => [
-//			'name' => 'Отзывы',
-//			'singular_name' => 'Отзыв',
-//			'add_new' => 'Добавить отзыв',
-//			'add_new_item' => 'Добавить отзыв',
-//			'edit_item' => 'Редактировать отзыв',
-//			'new_item' => 'Новый отзыв',
-//			'view_item' => 'Смотреть отзыв',
-//			'search_items' => 'Найти отзыв',
-//			'not_found' => 'Не найдено',
-//			'not_found_in_trash' => 'Не найдено в корзине',
-//			'menu_name' => 'Отзывы',
-//		],
-//		'public' => true,
-//		'show_in_menu' => true,
-//		'menu_position' => 21,
-//		'menu_icon' => 'dashicons-format-chat',
-//		'supports' => ['title', 'editor'],
-//		'taxonomies' => ['review_type'],
-//		'has_archive' => false,
-//		'rewrite' => true,
-//		'query_var' => true,
-//		'publicly_queryable' => false
-//	] );
+	register_post_type( 'faq', [
+		'label' => null,
+		'labels' => [
+			'name' => 'Вопрос - ответ',
+			'singular_name' => 'Вопрос - ответ',
+			'add_new' => 'Добавить вопрос',
+			'add_new_item' => 'Добавить вопрос',
+			'edit_item' => 'Редактировать вопрос',
+			'new_item' => 'Новый вопрос',
+			'view_item' => 'Смотреть вопрос',
+			'search_items' => 'Найти вопрос',
+			'not_found' => 'Не найдено',
+			'not_found_in_trash' => 'Не найдено в корзине',
+			'menu_name' => 'Вопрос - ответ',
+		],
+		'public' => true,
+		'show_in_menu' => true,
+		'menu_position' => 22,
+		'menu_icon' => 'dashicons-editor-help',
+		'supports' => ['title'],
+		'taxonomies' => ['faq_type'],
+		'has_archive' => false,
+		'rewrite' => true,
+		'query_var' => true,
+		'publicly_queryable' => false
+	] );
 }
 
 add_action( 'after_setup_theme', 'adem_setup' );
