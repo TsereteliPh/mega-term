@@ -1,0 +1,116 @@
+.title {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 15px;
+	align-items: center;
+
+	@include xs {
+		grid-template-columns: 1fr;
+		gap: 10px;
+		padding: 0;
+	}
+
+	&--small-text {
+		padding: 0 0 0 14vw;
+
+		@include md {
+			padding: 0;
+		}
+
+		.title__link {
+
+			@include md {
+				grid-row: span 2;
+			}
+		}
+
+		.title__text {
+
+			@include md {
+				order: 1;
+			}
+
+			@include xs {
+				order: 0;
+			}
+		}
+	}
+
+	&__small-text {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: grid;
+		place-content: center;
+		width: fit-content;
+		min-width: 100px;
+		max-width: 200px;
+		min-height: 35px;
+		padding: 10px;
+		color: var(--fc-light);
+		font-weight: 700;
+		font-size: 10px;
+		line-height: 1;
+		background: var(--fc-dark);
+		border-radius: 20px;
+
+		@include md {
+			position: static;
+			min-width: auto;
+			max-width: none;
+			min-height: auto;
+			padding: 5px 15px;
+		}
+	}
+
+	&__text {
+		margin-bottom: 0;
+		font-size: 24px;
+		font-family: var(--font-secondary);
+		line-height: 1.3;
+
+		@include hg {
+			font-size: 22px;
+			line-height: 1.15;
+		}
+
+		@include sm {
+			font-size: 20px;
+		}
+
+		@include xs {
+			font-size: 18px;
+		}
+
+		span {
+			display: block;
+			margin-left: 40px;
+
+			@include hg {
+				margin-left: 20px;
+			}
+
+			@include sm {
+				display: inline;
+				margin-left: 0;
+			}
+		}
+	}
+
+	&__link {
+		width: fit-content;
+		max-width: 200px;
+
+		@include md {
+			top: auto;
+			bottom: 0;
+		}
+
+		@include xs {
+			position: static;
+			min-height: 40px;
+			padding: 10px 15px;
+		}
+	}
+}
