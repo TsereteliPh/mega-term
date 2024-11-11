@@ -1,0 +1,21 @@
+.input {
+	width: 100%;
+	min-height: 50px;
+	padding: 15px;
+	color: var(--fc-dark);
+	background: var(--bg-secondary);
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
+	outline: none;
+	transition: var(--transition);
+
+	&:hover,
+	&:focus {
+		border-color: var(--fc-dark);
+		outline: none;
+	}
+
+	&:user-invalid {
+		border-color: var(--primary);
+	}
+}

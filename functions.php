@@ -27,6 +27,9 @@ if ( ! function_exists( 'adem_setup' ) ) {
 		register_nav_menus(
 			array(
 				'menu_main' => 'Основное меню',
+				'cats_menu' => 'Меню категорий',
+				'about_menu' => 'Меню о нас',
+				'clients_menu' => 'Клиентское меню',
 			)
 		);
 	}
