@@ -11,18 +11,10 @@ function load_more() {
 	if( $query->have_posts() ) {
 		while( $query->have_posts() ) {
 			$query->the_post();
-			if ( $args['post_type'] == 'review' ) {
-				$return_html .= get_template_part( 'layouts/partials/cards/review', null, array(
-					'iteration' => 5
-				));
-			} else if ( $args['cat'] == 6 ) {
-				$return_html .= get_template_part( 'layouts/partials/cards/news', null, array(
-					'item-class' => '',
-					'text-class' => ''
-				));
-			} else if ( $args['cat'] == 7 ) {
-				$return_html .= get_template_part( 'layouts/partials/cards/blog', null, array(
-					'class' => ''
+			if ( $args['post_type'] == 'reviews' ) {
+				$return_html .= get_template_part( 'layouts/partials/cards/review-card', null, array(
+					'class' => 'reviews__item',
+					'cat' => true
 				));
 			}
 		}
