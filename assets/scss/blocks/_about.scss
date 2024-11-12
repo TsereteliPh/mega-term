@@ -1,0 +1,188 @@
+.about {
+	margin: 80px 0 40px;
+	color: var(--fc-light);
+
+	@include xs {
+		margin: 40px 0 20px;
+	}
+
+	&__container {
+		display: flex;
+		gap: 60px;
+		justify-content: space-between;
+		padding: 80px 110px;
+		overflow: hidden;
+		background: no-repeat 50% / cover;
+		border-radius: 10px;
+
+		@include lg {
+			padding: 80px 40px;
+		}
+
+		@include md {
+			flex-direction: column;
+			gap: 30px;
+			padding: 60px 1.5rem;
+		}
+
+		@include xs {
+			gap: 20px;
+			padding: 30px 0.75rem;
+		}
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(#000, 0.6);
+			content: "";
+		}
+
+		&::after {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 50%;
+			background: linear-gradient(to top, #000 0%, rgba(#000, 0) 100%);
+			content: "";
+		}
+	}
+
+	&__content,
+	&__extra {
+		position: relative;
+		z-index: var(--ui-index-1);
+		display: flex;
+		flex: 0 1 100%;
+		flex-direction: column;
+	}
+
+	&__content {
+		gap: 30px;
+		max-width: 560px;
+
+		@include md {
+			max-width: none;
+		}
+
+		@include xs {
+			gap: 20px;
+		}
+	}
+
+	&__title {
+		margin-bottom: 15px;
+		font-weight: 400;
+		font-size: 24px;
+		font-family: var(--font-secondary);
+
+		@include hg {
+			font-size: 22px;
+		}
+
+		@include sm {
+			font-size: 20px;
+		}
+
+		@include xs {
+			margin-bottom: 0;
+			font-size: 18px;
+		}
+	}
+
+	&__text {
+		line-height: 1.3;
+		letter-spacing: 0.28px;
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+
+		@include md {
+			max-width: 600px;
+			margin: 0 auto;
+		}
+
+		@include xs {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		min-height: 175px;
+		padding: 30px;
+		text-align: center;
+		border: 1px solid var(--fc-gray);
+		border-right: none;
+		border-left: none;
+		border-radius: 10px;
+
+		@include lg {
+			min-height: 150px;
+			padding: 30px 20px;
+		}
+
+		@include xs {
+			flex: 1 1 150px;
+			min-height: auto;
+		}
+
+		span {
+			font-weight: 300;
+			font-size: 30px;
+			font-family: var(--font-secondary);
+
+			@include lg {
+				font-size: 26px;
+			}
+		}
+	}
+
+	&__extra {
+		gap: 10px;
+		align-items: flex-end;
+		width: 100%;
+		max-width: 330px;
+
+		@include md {
+			align-items: center;
+			max-width: none;
+		}
+	}
+
+	&__logo {
+		margin-bottom: auto;
+
+		@include md {
+			display: none;
+		}
+	}
+
+	&__link {
+		width: 100%;
+		color: var(--fc-light);
+		text-align: center;
+
+		&--big {
+			position: relative;
+			min-height: 115px;
+
+			svg {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+			}
+		}
+	}
+}
