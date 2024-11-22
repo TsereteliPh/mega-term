@@ -146,4 +146,12 @@ iframe {
 
 .main {
 	margin-bottom: auto;
+
+	section:not(.no-margin) {
+		margin: 80px 0 40px;
+
+		@include xs {
+			margin: 40px 0 20px;
+		}
+	}
 }
