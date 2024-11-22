@@ -16,6 +16,10 @@ function load_more() {
 					'class' => 'reviews__item',
 					'cat' => true
 				));
+			} else if ( in_category( 22 ) || in_category( 23 ) ) {
+				$return_html .= get_template_part( 'layouts/partials/cards/article-card', null, array(
+					'class' => 'archive-block__item',
+				));
 			}
 		}
 

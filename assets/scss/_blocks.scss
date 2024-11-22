@@ -8,12 +8,15 @@
 @import "blocks/title";
 
 // cards
+@import "blocks/article-card";
 @import "blocks/review-card";
 
 // blocks
 @import "blocks/about";
+@import "blocks/archive-block";
 @import "blocks/faq";
 @import "blocks/footer";
 @import "blocks/header";
 @import "blocks/review-slider";
 @import "blocks/reviews";
+@import "blocks/single-article";

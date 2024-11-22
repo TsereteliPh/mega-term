@@ -1,0 +1,10 @@
+.single-article {
+
+	+ section:not(.no-margin) {
+		margin: 0;
+
+		@include xs {
+			margin: 0;
+		}
+	}
+}
