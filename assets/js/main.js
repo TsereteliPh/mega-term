@@ -394,9 +394,40 @@ function header() {
 	})
 }
 
+// ---------------------------------------------------------------- Other
+function mainTextHeightHandler() {
+	const mainTextBlocks = document.querySelectorAll('.main-text');
+
+	if (!mainTextBlocks) return;
+
+	mainTextBlocks.forEach(block => {
+		let textBlock = block.querySelector('.main-text__text');
+		let textContent = textBlock.querySelector('.main-text__text-content');
+		let btn = textBlock.querySelector('.btn');
+
+		if (textContent.offsetHeight > 350) {
+            textBlock.classList.add('overflow');
+			textContent.style.maxHeight = 350 + 'px';
+        } else {
+			btn.classList.add('hidden');
+		}
+
+		btn.addEventListener('click', function() {
+            textBlock.classList.toggle('overflow');
+
+			if (textContent.offsetHeight === 350) {
+				textContent.style.maxHeight = `${textContent.scrollHeight}px`;
+			} else {
+				textContent.style.maxHeight = 350 + 'px';
+			}
+        });
+	});
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	accordion();
 	header();
+	mainTextHeightHandler();
 	setHeaderScrollClass();
 	setFileName();
 	setNameMask();
