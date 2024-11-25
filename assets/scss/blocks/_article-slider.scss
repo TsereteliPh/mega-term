@@ -1,0 +1,60 @@
+.article-slider {
+	overflow: hidden;
+
+	&__title {
+
+		.title__link {
+			display: none;
+
+			&.active {
+				display: block;
+			}
+		}
+	}
+
+	&__content {
+		position: relative;
+		display: none;
+		margin-top: 20px;
+		padding: 0 60px;
+
+		@include hg {
+			padding: 0 45px;
+		}
+
+		@include sm {
+			padding: 0;
+		}
+
+		&.active {
+			display: block;
+		}
+	}
+
+	&__slider {
+
+		@include sm {
+			overflow: visible;
+		}
+	}
+
+	&__slide {
+		height: auto;
+
+		@include sm {
+			max-width: 330px;
+		}
+
+		@include xs {
+			max-width: 280px;
+		}
+	}
+
+	&__pagination {
+		display: none;
+
+		@include sm {
+			display: flex;
+		}
+	}
+}

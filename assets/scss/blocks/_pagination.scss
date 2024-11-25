@@ -9,6 +9,10 @@
 		margin-top: 20px;
 	}
 
+	&.swiper-pagination-lock {
+		display: none;
+	}
+
 	&__bullet {
 		display: block;
 		width: 10px;

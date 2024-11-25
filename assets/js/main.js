@@ -207,6 +207,10 @@ function tabs() {
 			'#' + tabItem.getAttribute('data-tab')
 		);
 
+		const tabExtra = document.querySelector(
+			'[data-id="' + tabItem.getAttribute('data-tab') + '"]'
+		);
+
 		tabItem.classList.add('active');
 		get_siblings(tabItem).forEach(function (tab) {
 			tab.classList.remove('active');
@@ -215,6 +219,11 @@ function tabs() {
 		tabContainer.classList.add('active');
 		get_siblings(tabContainer).forEach(function (tab_container) {
 			tab_container.classList.remove('active');
+		});
+
+		tabExtra.classList.add('active');
+		get_siblings(tabExtra).forEach(function (tab_extra) {
+			tab_extra.classList.remove('active');
 		});
 
 		tabItem.parentNode.classList.remove('open');
@@ -307,14 +316,45 @@ function initReviewSlider() {
 				769: {
 					slidesPerView: 2,
 				}
+			}
+		});
+	});
+}
+
+function initArticleSlider() {
+	const slider = document.querySelector('.article-slider');
+
+	if (!slider) return;
+
+	const allSliders = slider.querySelectorAll('.swiper');
+
+	allSliders.forEach(slider => {
+		let swiper = new Swiper(slider, {
+			slidesPerView: 'auto',
+			spaceBetween: 10,
+			centerInsufficientSlides: true,
+			navigation: {
+				nextEl: slider.parentNode.querySelector('.controls__next'),
+				prevEl: slider.parentNode.querySelector('.controls__prev'),
 			},
-			on: {
-				afterInit: function() {
-					if (this.slides.length <= this.params.slidesPerView) {
-						this.pagination.el.style.display = 'none';
-						this.navigation.nextEl.style.display = 'none';
-						this.navigation.prevEl.style.display = 'none';
-					}
+			pagination: {
+				el: slider.querySelector('.pagination'),
+				bulletClass: 'pagination__bullet',
+				bulletActiveClass: 'active',
+				clickable: true
+			},
+			breakpoints: {
+				1441: {
+					slidesPerView: 4,
+				},
+				1281: {
+					slidesPerView: 4,
+				},
+				992: {
+					slidesPerView: 3,
+				},
+				769: {
+					slidesPerView: 2,
 				}
 			}
 		});
@@ -369,4 +409,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Swiper
 	initReviewSlider();
+	initArticleSlider();
 });

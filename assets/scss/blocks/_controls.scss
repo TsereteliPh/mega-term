@@ -43,6 +43,10 @@
 			}
 		}
 
+		&.swiper-button-lock {
+			display: none;
+		}
+
 		svg {
 			color: var(--primary);
 		}
