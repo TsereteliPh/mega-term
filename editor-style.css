@@ -1,1 +1,22 @@
+.check-ul {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding-left: 0;
+	list-style: none;
+}
 
+.check-ul li {
+	position: relative;
+	padding-left: 35px;
+}
+
+.check-ul li::before {
+	position: absolute;
+	top: 2px;
+	left: 0;
+	width: 15px;
+	height: 15px;
+	background: url(assets/images/icon-check.svg) no-repeat 50% / contain;
+	content: "";
+}

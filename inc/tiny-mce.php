@@ -5,44 +5,13 @@ function change_toolbar($args)
 {
 	$style_formats = [
 		[
-			'title' => 'Ненумерованный список',
+			'title' => 'Список с чекбоксом',
 			'selector' => 'ul',
-			'classes' => 'article-ul',
+			'classes' => 'check-ul',
 		],
-		[
-			'title' => 'Нумерованный список',
-			'selector' => 'ol',
-			'classes' => 'article-ol',
-		],
-		[
-			'title' => 'Стиль текста',
-			'items' => [
-				[
-					'title' => 'Regular',
-					'selector' => 'ul, ol, a, p, span',
-					'styles' => [
-						'font-weight' => '400',
-					],
-				],
-				[
-					'title' => 'Medium',
-					'selector' => 'ul, ol, a, p, span',
-					'styles' => [
-						'font-weight' => '500',
-					],
-				],
-				[
-					'title' => 'Extra Bold',
-					'selector' => 'ul, ol, a, p, span',
-					'styles' => [
-						'font-weight' => '800',
-					],
-				],
-			]
-		]
 	];
 	$args['fontsize_formats'] = "6px 8px 10px 12px 14px 16px 18px 20px 22px 24px 28px 30px 32px 34px 36px 38px 40px";
-	$args['font_formats'] = "Montserrat=Montserrat,sans-serif;Cormorant Unicase=Cormorant Unicase,sans-serif";
+	$args['font_formats'] = "Montserrat=Montserrat,sans-serif;";
 	$args['style_formats'] = json_encode($style_formats);
 
 	return $args;
