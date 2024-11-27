@@ -111,7 +111,7 @@
 				<?php if ( $socials ) : ?>
 					<div class="footer__socials">
 						<?php foreach ( $socials as $social ) : ?>
-                            <a href="<?php echo $social['url'];?>" class="footer__social" target="_blank">
+                            <a href="<?php echo $social['link']; ?>" class="footer__social" target="_blank">
                                 <svg width="32" height="32"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-<?php echo $social['social'];?>"></use></svg>
                             </a>
                         <?php endforeach;?>
