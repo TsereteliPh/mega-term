@@ -9,6 +9,44 @@ function change_toolbar($args)
 			'selector' => 'ul',
 			'classes' => 'check-ul',
 		],
+		[
+			'title' => 'Адаптивная таблица',
+			'selector' => 'table',
+			'classes' => 'main-table',
+		],
+		[
+			'title' => 'Стиль текста',
+			'items' => [
+				[
+					'title' => 'Light',
+					'selector' => 'ul, ol, a, p, span, td',
+					'styles' => [
+						'font-weight' => '300',
+					],
+				],
+				[
+					'title' => 'Regular',
+					'selector' => 'ul, ol, a, p, span, td',
+					'styles' => [
+						'font-weight' => '400',
+					],
+				],
+				[
+					'title' => 'Medium',
+					'selector' => 'ul, ol, a, p, span, td',
+					'styles' => [
+						'font-weight' => '500',
+					],
+				],
+				[
+					'title' => 'SemiBold',
+					'selector' => 'ul, ol, a, p, span, td',
+					'styles' => [
+						'font-weight' => '600',
+					],
+				],
+			]
+		]
 	];
 	$args['fontsize_formats'] = "6px 8px 10px 12px 14px 16px 18px 20px 22px 24px 28px 30px 32px 34px 36px 38px 40px";
 	$args['font_formats'] = "Montserrat=Montserrat,sans-serif;";

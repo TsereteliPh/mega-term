@@ -81,6 +81,10 @@
 		}
 	}
 
+	&__content {
+		overflow: auto;
+	}
+
 	&__title {
 		margin-bottom: 30px;
 		font-weight: 700;
