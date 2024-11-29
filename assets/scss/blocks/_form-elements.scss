@@ -16,6 +16,55 @@
 	}
 
 	&:user-invalid {
-		border-color: var(--primary);
+		border-color: var(--primary) !important;
+	}
+}
+
+.checkbox {
+	display: flex;
+	gap: 10px;
+
+	&__input {
+		display: none;
+		appearance: none;
+	}
+
+	&__switcher {
+		position: relative;
+		flex-shrink: 0;
+		width: 30px;
+		height: 15px;
+		background: var(--bg-secondary);
+		border-radius: 15px;
+		cursor: pointer;
+		transition: var(--transition);
+
+		&::before {
+			position: absolute;
+			top: 1px;
+			left: 1px;
+			width: 13px;
+			height: 13px;
+			background: var(--bg-primary);
+			border-radius: 50%;
+			transition: var(--transition);
+			content: "";
+		}
+	}
+
+	&__text {
+		line-height: 1.2;
+
+		a {
+			@include ui-link(var(--fc-dark));
+		}
+	}
+
+	&__input:checked + &__switcher {
+		background: var(--secondary);
+	}
+
+	&__input:checked + &__switcher::before {
+		left: 16px;
 	}
 }

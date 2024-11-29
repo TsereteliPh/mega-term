@@ -1,0 +1,160 @@
+.form-question {
+	overflow: hidden;
+
+	@include sm {
+		margin: 40px 0 20px;
+	}
+
+	&__container {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		align-items: center;
+		min-height: 500px;
+		padding: 80px 0;
+
+		@include hg {
+			gap: 30px;
+			min-height: auto;
+			padding: 10px 0;
+		}
+
+		@include sm {
+			grid-template-columns: 1fr;
+			padding: 0;
+		}
+	}
+
+	&__content {
+		width: 100%;
+		max-width: 800px;
+	}
+
+	&__title {
+		margin-bottom: 0;
+		font-weight: 300;
+		font-size: 40px;
+		font-family: var(--font-secondary);
+
+		@include hg {
+			font-size: 32px;
+		}
+
+		@include md {
+			font-size: 26px;
+		}
+
+		@include xs {
+			font-size: 20px;
+		}
+	}
+
+	&__text {
+		margin-top: 10px;
+	}
+
+	&__form {
+		display: grid;
+		grid-template-columns: 1.5fr 1fr 1fr;
+		gap: 10px;
+		align-items: center;
+		margin-top: 30px;
+
+		@include md {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@include sm {
+			margin-top: 20px;
+		}
+
+		@include xs {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__input,
+	&__textarea {
+		min-height: 60px;
+		background-color: var(--bg-tertiary);
+		border-color: transparent;
+
+		@include xs {
+			min-height: 50px;
+		}
+	}
+
+	&__textarea {
+		grid-row: 1/3;
+		grid-column: 2/4;
+		width: 100%;
+		height: 100%;
+
+		@include md {
+			grid-row: auto;
+			grid-column: span 2;
+			min-height: 150px;
+		}
+
+		@include xs {
+			grid-column: auto;
+			min-height: 120px;
+		}
+	}
+
+	&__policy {
+		grid-column: span 2;
+		max-width: 460px;
+
+		@include md {
+			grid-column: auto;
+			font-size: 12px;
+		}
+
+		@include xs {
+			max-width: 400px;
+			margin: 0 auto;
+		}
+	}
+
+	&__submit {
+		width: 100%;
+		font-weight: 300;
+
+		@include md {
+			justify-self: end;
+			max-width: 220px;
+		}
+
+		@include xs {
+			max-width: 400px;
+			margin: 0 auto;
+		}
+	}
+
+	&__img {
+		position: absolute;
+		top: 50%;
+		right: calc(50% - 680px);
+		width: auto;
+		height: 100%;
+		aspect-ratio: 1/1;
+		transform: translateY(-50%);
+
+		@include hg {
+			position: static;
+			width: 100%;
+			height: auto;
+			transform: none;
+		}
+
+		@include sm {
+			display: none;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+}
