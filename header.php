@@ -112,4 +112,12 @@
 	</div>
 </header>
 
+<?php if ( ! is_front_page() && function_exists( 'yoast_breadcrumb' ) ) : ?>
+	<div class="breadcrumb">
+		<div class="container">
+			<?php echo yoast_breadcrumb(); ?>
+		</div>
+	</div>
+<?php endif ?>
+
 <main class="main">

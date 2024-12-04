@@ -1,0 +1,58 @@
+.breadcrumb {
+	width: 100%;
+	margin-top: 20px;
+	font-size: 12px;
+	font-family: var(--font-secondary);
+	line-height: 1;
+
+	@include xs {
+		margin-top: 15px;
+		font-size: 10px;
+	}
+
+	.container {
+
+		> span {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px 5px;
+			align-items: center;
+
+			@include sm {
+				flex-wrap: nowrap;
+				overflow: scroll;
+				scrollbar-width: none;
+			}
+
+			span {
+
+				@include sm {
+					flex-shrink: 0;
+				}
+
+				a {
+					text-decoration: none;
+					cursor: pointer;
+					@include ui-link(inherit);
+				}
+			}
+		}
+	}
+
+	&_separator {
+		flex-shrink: 0;
+		width: 10px;
+		height: 6px;
+		margin-right: 20px;
+		background: url(assets/images/icon-breadcrumb-caret.svg) no-repeat 50% / contain;
+
+		@include sm {
+			margin-right: 10px;
+		}
+	}
+
+	&_last {
+		color: var(--fc-gray);
+		cursor: default;
+	}
+}
