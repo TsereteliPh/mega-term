@@ -7,6 +7,7 @@ if ( ! defined( '_S_VERSION' ) ) {
 
 if ( ! function_exists( 'adem_setup' ) ) {
 	function adem_setup() {
+		add_theme_support('woocommerce');
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support(
@@ -224,3 +225,4 @@ require 'inc/mail.php';
 require 'inc/svg.php';
 require 'inc/tiny-mce.php';
 require 'inc/traffic.php';
+require 'inc/woocommerce.php';
