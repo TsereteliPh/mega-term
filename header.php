@@ -106,8 +106,24 @@
 			</button>
 		</div>
 
-		<div class="header__cats">
-			<?php //TODO: header cats ?>
+		<div class="header__small-cats">
+			<?php
+				$cats = get_terms( [
+					'taxonomy' => 'product_cat',
+					'hide_empty' => false, //? Display empty cats
+					'parent' => 0,
+					'exclude' => 15, // Misc cat
+				] );
+
+				foreach ( $cats as $cat ) {
+					$icon = get_field( 'cat_icon', $cat );
+					$icon_tag = wp_get_attachment_image( $icon, array( 20, 20 ), false );
+
+					echo '<a href="'. get_term_link( $cat ) . '" class="header__small-cat">' . $icon_tag . $cat->name . '</a>';
+				}
+			?>
+
+			<button class="header__small-cat-button hidden" type="button">Еще</button>
 		</div>
 	</div>
 </header>

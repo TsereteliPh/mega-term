@@ -424,9 +424,48 @@ function mainTextHeightHandler() {
 	});
 }
 
+function headerSmallCatsHandler() {
+	const catsWrapper = document.querySelector('.header__small-cats');
+
+	if (!catsWrapper) return;
+
+	const catsWrapperStyles = window.getComputedStyle(catsWrapper);
+	const catsWrapperColumns = catsWrapperStyles.getPropertyValue('grid-template-columns').split(' ').length;
+
+	const cats = catsWrapper.querySelectorAll('.header__small-cat');
+	const overflowCats = [];
+	const btn = catsWrapper.querySelector('button');
+
+	const checkHeight = () => {
+		return catsWrapper.offsetHeight > 60;
+	}
+
+	if ((catsWrapperColumns <= (cats.length - 1))) {
+		btn.classList.remove('hidden');
+		for (let i = cats.length - 1; i > 0; i--) {
+			cats[i].classList.add('hidden');
+			overflowCats.push(cats[i]);
+			if (!checkHeight()) break;
+		}
+	}
+
+	btn.addEventListener('click', function () {
+		if (this.classList.contains('active')) {
+			overflowCats.forEach(cat => cat.classList.add('hidden'));
+			this.classList.remove('active');
+			this.textContent = 'Еще';
+		} else {
+			overflowCats.forEach(cat => cat.classList.remove('hidden'));
+			this.classList.add('active');
+			this.textContent = 'Скрыть';
+		}
+	});
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	accordion();
 	header();
+	headerSmallCatsHandler();
 	mainTextHeightHandler();
 	setHeaderScrollClass();
 	setFileName();
