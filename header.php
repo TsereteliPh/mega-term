@@ -36,10 +36,17 @@
 			</a>
 		</div>
 
-		<button class="btn btn--thic header__catalog" type="button">
-			Каталог
-			<span>оборудования</span>
-			<svg width="8" height="8"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-small"></use></svg>
+		<button class="btn btn--thic header__catalog-btn" type="button">
+			<div class="header__catalog-btn-open-text">
+				Каталог
+				<span>оборудования</span>
+				<svg width="8" height="8"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-small"></use></svg>
+			</div>
+
+			<div class="header__catalog-btn-close-text">
+				Закрыть
+				<span></span>
+			</div>
 		</button>
 
 		<button class="btn btn--square header__search-modal" aria-label="Открыть поиск" data-src="#search" data-fancybox>
@@ -104,6 +111,28 @@
 			<button class="btn btn--square header__burger" type="button">
 				<span></span>
 			</button>
+		</div>
+
+		<div class="header__catalog" id="header_catalog">
+			<div class="header__catalog-wrapper header__catalog-wrapper--cats">
+				<div class="header__catalog-title">Каталог</div>
+
+				<div class="header__cats">
+					<?php
+						if ( function_exists( 'adem_recursive_header_categories' ) ) {
+							adem_recursive_header_categories();
+						}
+					?>
+				</div>
+			</div>
+
+			<div class="header__catalog-wrapper header__catalog-wrapper--brands">
+				<div class="header__catalog-title">Бренды</div>
+
+				<?php get_template_part( '/layouts/partials/brands-slider', null, array(
+					'class' => 'header__catalog-brands',
+				) ); ?>
+			</div>
 		</div>
 
 		<div class="header__small-cats">

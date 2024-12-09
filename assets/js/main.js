@@ -36,11 +36,14 @@ function accordion() {
 
 	accordionHolders.forEach(accordion => {
 		const accordionBtns = accordion.querySelectorAll('button');
+		const accordionBreakpoint = parseInt(accordion.dataset.breakpoint);
 
 		const accordionBtnsClose = () => {
 			for (let btn of accordionBtns) {
 				btn.classList.remove('active');
-				btn.nextElementSibling.style.maxHeight = 0;
+				if (btn.nextElementSibling && (window.innerWidth <= accordionBreakpoint)) {
+					btn.nextElementSibling.style.maxHeight = 0;
+				}
 			}
 		}
 
@@ -51,7 +54,9 @@ function accordion() {
 				} else {
 					accordionBtnsClose();
 					this.classList.add('active');
-					slideToggle(this.nextElementSibling);
+					if (btn.nextElementSibling && (window.innerWidth <= accordionBreakpoint)) {
+						slideToggle(this.nextElementSibling);
+					}
 				}
 			})
 		});
@@ -344,10 +349,10 @@ function initArticleSlider() {
 				clickable: true
 			},
 			breakpoints: {
-				1441: {
+				1440: {
 					slidesPerView: 4,
 				},
-				1281: {
+				1280: {
 					slidesPerView: 4,
 				},
 				992: {
@@ -355,6 +360,35 @@ function initArticleSlider() {
 				},
 				769: {
 					slidesPerView: 2,
+				}
+			}
+		});
+	});
+}
+
+function initBrandsSlider() {
+	const sliders = document.querySelectorAll('.brands-slider');
+
+	if (!sliders) return;
+
+	sliders.forEach(slider => {
+		let swiper = new Swiper(slider.querySelector('.swiper'), {
+			slidesPerView: 'auto',
+			spaceBetween: 10,
+			centerInsufficientSlides: true,
+			navigation: {
+				nextEl: slider.parentNode.querySelector('.controls__next'),
+				prevEl: slider.parentNode.querySelector('.controls__prev'),
+			},
+			breakpoints: {
+				1280: {
+					slidesPerView: 10,
+				},
+				992: {
+					slidesPerView: 7,
+				},
+				769: {
+					slidesPerView: 6,
 				}
 			}
 		});
@@ -394,34 +428,14 @@ function header() {
 	})
 }
 
-// ---------------------------------------------------------------- Other
-function mainTextHeightHandler() {
-	const mainTextBlocks = document.querySelectorAll('.main-text');
+function headerCatalogToggle() {
+	const catalog = document.querySelector('.header__catalog');
+	const catalogButton = document.querySelector('.header__catalog-btn');
 
-	if (!mainTextBlocks) return;
-
-	mainTextBlocks.forEach(block => {
-		let textBlock = block.querySelector('.main-text__text');
-		let textContent = textBlock.querySelector('.main-text__text-content');
-		let btn = textBlock.querySelector('.btn');
-
-		if (textContent.offsetHeight > 350) {
-            textBlock.classList.add('overflow');
-			textContent.style.maxHeight = 350 + 'px';
-        } else {
-			btn.classList.add('hidden');
-		}
-
-		btn.addEventListener('click', function() {
-            textBlock.classList.toggle('overflow');
-
-			if (textContent.offsetHeight === 350) {
-				textContent.style.maxHeight = `${textContent.scrollHeight}px`;
-			} else {
-				textContent.style.maxHeight = 350 + 'px';
-			}
-        });
-	});
+	catalogButton.onclick = () => {
+		catalogButton.classList.toggle('active');
+		catalog.classList.toggle('active');
+	}
 }
 
 function headerSmallCatsHandler() {
@@ -462,9 +476,40 @@ function headerSmallCatsHandler() {
 	});
 }
 
+// ---------------------------------------------------------------- Other
+function mainTextHeightHandler() {
+	const mainTextBlocks = document.querySelectorAll('.main-text');
+
+	if (!mainTextBlocks) return;
+
+	mainTextBlocks.forEach(block => {
+		let textBlock = block.querySelector('.main-text__text');
+		let textContent = textBlock.querySelector('.main-text__text-content');
+		let btn = textBlock.querySelector('.btn');
+
+		if (textContent.offsetHeight > 350) {
+            textBlock.classList.add('overflow');
+			textContent.style.maxHeight = 350 + 'px';
+        } else {
+			btn.classList.add('hidden');
+		}
+
+		btn.addEventListener('click', function() {
+            textBlock.classList.toggle('overflow');
+
+			if (textContent.offsetHeight === 350) {
+				textContent.style.maxHeight = `${textContent.scrollHeight}px`;
+			} else {
+				textContent.style.maxHeight = 350 + 'px';
+			}
+        });
+	});
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	accordion();
 	header();
+	headerCatalogToggle();
 	headerSmallCatsHandler();
 	mainTextHeightHandler();
 	setHeaderScrollClass();
@@ -480,4 +525,5 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Swiper
 	initReviewSlider();
 	initArticleSlider();
+	initBrandsSlider();
 });

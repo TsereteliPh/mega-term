@@ -89,3 +89,62 @@ add_action( 'create_term', 'adem_product_cat_same_shop_edit_success', 10, 2 );
 function adem_product_cat_same_shop_edit_success( $term_id, $taxonomy ) {
     adem_product_category_base_same_shop_base(true);
 }
+
+// Recursive function for header cats
+function adem_recursive_header_categories( $parent_id = 0, $level = 0 ) {
+	$current_term = get_queried_object();
+
+	$categories = get_terms( [
+		'taxonomy' => 'product_cat',
+		'parent' => $parent_id,
+		'hide_empty' => false, //? Display empty cats
+		'orderby' => 'name',
+		'exclude' => 15, // Misc cat
+	] );
+
+	if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
+		$classes = 'reset-list header__cats-list header__cats-list--level-' . $level;
+		if ( $level === 0 ) $classes .= ' js-accordion';
+
+		echo '<ul class="' . $classes . '"' . ( $level === 0 ? ' data-breakpoint="576"' : '' ) . '>';
+
+		foreach ( $categories as $category ) {
+			echo '<li class="header__cats-item header__cats-item--level-' . $level . '">';
+
+			if ( $level === 0 ) {
+				echo '<button class="header__cats-item-button" type="button">';
+			}
+
+			$link_classes = 'header__cats-item-link header__cats-item-link--level-' . $level;
+			if ( $current_term->term_id === $category->term_id ) $link_classes .= ' current';
+
+			echo '<a href="' . get_term_link( $category ) . '" class="' . $link_classes . '">';
+
+			if ( $level === 0 ) {
+				$cat_img = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
+				echo '<div class="header__cats-item-img">';
+				echo wp_get_attachment_image( $cat_img ? $cat_img : 24, 'thumbnail', false );
+				echo '</div>';
+			}
+
+			echo $category->name;
+
+			echo '</a>';
+
+			if ( $level === 0 ) {
+				$term_childrens = get_term_children( $category->term_id, 'product_cat' );
+				if ( $term_childrens ) {
+					echo '<svg width="10" height="10"><use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-caret"></use></svg>';
+				}
+
+				echo '</button>';
+			}
+
+			adem_recursive_header_categories( $category->term_id, $level + 1 );
+
+			echo '</li>';
+		}
+
+		echo '</ul>';
+	}
+}

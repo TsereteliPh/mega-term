@@ -41,7 +41,7 @@ acf_add_local_field_group(array(
 			array(
 				'param' => 'taxonomy',
 				'operator' => '==',
-				'value' => 'pa_brendy',
+				'value' => 'pa_brands',
 			),
 		),
 	),
@@ -61,7 +61,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1733309686,
+	'modified' => 1733744957,
 ));
 
 endif;

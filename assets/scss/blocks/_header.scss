@@ -3,6 +3,7 @@
 
 	@include sm {
 		padding-top: 10px;
+		overflow: hidden;
 	}
 
 	&__container {
@@ -21,6 +22,7 @@
 
 		@include sm {
 			gap: 10px 5px;
+			overflow: visible;
 		}
 
 		@include xs {
@@ -104,8 +106,9 @@
 		}
 	}
 
-	&__catalog {
+	&__catalog-btn {
 		display: block;
+		line-height: 1;
 		background: var(--tertiary);
 
 		@include xs {
@@ -113,11 +116,64 @@
 			padding: 10px 15px;
 		}
 
+		&.active {
+			background: var(--fc-dark);
+
+			.header__catalog-btn-open-text {
+				display: none;
+			}
+
+			.header__catalog-btn-close-text {
+				display: flex;
+			}
+		}
+	}
+
+	&__catalog-btn-open-text {
+
 		span,
 		svg {
 
 			@include xs {
 				display: none;
+			}
+		}
+	}
+
+	&__catalog-btn-close-text {
+		display: none;
+		gap: 10px;
+		align-items: center;
+		justify-content: center;
+
+		span {
+			position: relative;
+			display: block;
+			width: 12px;
+			height: 12px;
+
+			@include xs {
+				display: none;
+			}
+
+			&::before,
+			&::after {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 100%;
+				height: 2px;
+				background: var(--primary);
+				border-radius: 4px;
+				content: "";
+			}
+
+			&::before {
+				transform: translate(-50%, -50%) rotate(45deg);
+			}
+
+			&::after {
+				transform: translate(-50%, -50%) rotate(-45deg);
 			}
 		}
 	}
@@ -338,6 +394,335 @@
 				transition-duration: 0.25s;
 			}
 		}
+	}
+
+	&__catalog {
+		display: none;
+		flex-direction: column;
+		grid-column: 1/-1;
+		gap: 30px;
+		height: 775px;
+		overflow: hidden;
+		transition: var(--transition);
+
+		@include sm {
+			gap: 20px;
+			height: 600px;
+			overflow: visible;
+		}
+
+		&.active {
+			display: flex;
+		}
+	}
+
+	&__catalog-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		overflow: hidden;
+
+		@include sm {
+			overflow: visible;
+		}
+
+		&--cats {
+			height: calc(100% - 180px);
+			border-bottom: 1px solid #d9d9d9;
+
+			@include sm {
+				height: calc(100% - 160px);
+			}
+
+			@include xs {
+				height: calc(100% - 155px);
+			}
+		}
+	}
+
+	&__catalog-title {
+		font-size: 24px;
+		font-family: var(--font-secondary);
+		line-height: 1.3;
+		text-transform: uppercase;
+
+		@include hg {
+			font-size: 22px;
+			line-height: 1.15;
+		}
+
+		@include sm {
+			font-size: 20px;
+		}
+
+		@include xs {
+			font-size: 18px;
+		}
+	}
+
+	&__cats {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		height: calc(100% - 40px);
+		padding-bottom: 60px;
+
+		@include hg {
+			height: calc(100% - 35px);
+			padding-bottom: 30px;
+		}
+
+		@include md {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@include xs {
+			grid-template-columns: 1fr;
+			height: calc(100% - 25px);
+		}
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 33.3%;
+			width: 1px;
+			height: calc(100% + 1px);
+			background: #d9d9d9;
+			content: "";
+
+			@include md {
+				left: 50%;
+			}
+
+			@include xs {
+				display: none;
+			}
+		}
+	}
+
+	&__cats-list {
+
+		&--level-0 {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-right: 10px;
+			padding-right: 40px;
+			overflow: auto;
+
+			@include lg {
+				padding-right: 20px;
+			}
+
+			@include xs {
+				margin-right: 0;
+			}
+		}
+
+		&--level-1 {
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: none;
+			grid-auto-rows: min-content;
+			grid-template-columns: 1fr 1fr;
+			gap: 20px 30px;
+			width: 66.6%;
+			height: calc(100% - 60px);
+			padding: 15px 50px 0;
+			overflow: auto;
+
+			@include hg {
+				height: calc(100% - 30px);
+			}
+
+			@include lg {
+				gap: 15px 20px;
+				padding: 15px 30px 0;
+			}
+
+			@include md {
+				left: 50%;
+				grid-template-columns: 1fr;
+				gap: 15px;
+				width: 50%;
+			}
+
+			@include xs {
+				position: static;
+				display: grid;
+				width: 100%;
+				height: auto;
+				max-height: 0;
+				padding: 0 0 0 50px;
+				overflow: hidden;
+				transition: var(--transition);
+			}
+		}
+
+		&--level-2 {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			margin-top: 10px;
+			padding-left: 20px;
+			list-style: disc;
+
+			@include md {
+				gap: 5px;
+				margin-top: 5px;
+			}
+
+			::marker {
+				color: var(--primary);
+			}
+		}
+
+		&::-webkit-scrollbar {
+			width: 4px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: var(--primary);
+			border-radius: 10px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: var(--bg-secondary);
+			border-radius: 10px;
+		}
+
+		&::-webkit-scrollbar-corner {
+			background: transparent;
+		}
+
+		@-moz-document url-prefix() {
+			scrollbar-color: var(--primary) var(--bg-secondary);
+		}
+	}
+
+	&__cats-item {
+
+		&--level-1 {
+			height: fit-content;
+		}
+	}
+
+	&__cats-item-button {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 15px;
+		align-items: center;
+		width: 100%;
+		padding: 0;
+		background: none;
+		border: none;
+		-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		-webkit-tap-highlight-color: transparent;
+
+		@include mouse {
+
+			&:hover:not(:has(.header__cats-item-link:hover)) {
+
+				svg {
+					color: var(--primary);
+					transform: rotate(-90deg);
+				}
+			}
+		}
+
+		&.active {
+
+			svg {
+				color: var(--primary);
+				transform: rotate(-90deg);
+
+				@include xs {
+					transform: rotate(-180deg);
+				}
+			}
+
+			+ .header__cats-list--level-1 {
+				display: grid;
+
+				@include xs {
+					margin-top: 10px;
+				}
+			}
+		}
+
+		svg {
+			width: 15px;
+			height: auto;
+			transition: var(--transition);
+		}
+	}
+
+	&__cats-item-link {
+		display: flex;
+		gap: 15px;
+		align-items: center;
+		width: fit-content;
+		text-align: left;
+		text-decoration: none;
+		transition: var(--transition);
+
+		@include mouse {
+
+			&:hover {
+				color: var(--primary);
+			}
+		}
+
+		&--level-0 {
+			font-weight: 700;
+			font-size: 18px;
+
+			@include lg {
+				font-size: 16px;
+			}
+		}
+
+		&--level-1 {
+			font-weight: 700;
+			font-size: 16px;
+
+			@include lg {
+				font-size: 14px;
+			}
+		}
+
+		&.current {
+			color: var(--primary);
+			cursor: default;
+		}
+	}
+
+	&__cats-item-img {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		width: 50px;
+		height: auto;
+		padding: 10px;
+		aspect-ratio: 1/1;
+		overflow: hidden;
+		background: var(--bg-tertiary);
+		border-radius: 50%;
+
+		@include sm {
+			width: 35px;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+	&__catalog-brands {
+		height: 105px;
 	}
 
 	&__small-cats {
