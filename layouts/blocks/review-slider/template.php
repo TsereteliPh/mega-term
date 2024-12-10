@@ -39,15 +39,9 @@
 					<div class="pagination review-slider__pagination"></div>
 				</div>
 
-				<div class="review-slider__controls controls">
-					<div class="controls__prev">
-						<svg width="9" height="5"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-caret"></use></svg>
-					</div>
-
-					<div class="controls__next">
-						<svg width="9" height="5"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-caret"></use></svg>
-					</div>
-				</div>
+				<?php get_template_part( '/layouts/partials/controls', null, array(
+					'class' => 'review-slider__controls',
+				) ); ?>
 			</div>
 		<?php endforeach; ?>
 	</div>
