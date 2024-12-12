@@ -21,6 +21,30 @@
 	content: "";
 }
 
+.flex-ul {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin: 20px 0;
+	padding-left: 0;
+	list-style: none;
+}
+
+.flex-ul li {
+	display: flex;
+	gap: 15px;
+	justify-content: space-between;
+	color: #8c8c8c;
+	line-height: 1;
+}
+
+.flex-ul li b,
+.flex-ul li strong {
+	margin-left: auto;
+	color: #121d2e;
+	font-weight: 400;
+	text-align: right;
+}
 
 .main-table {
 	height: 100%;

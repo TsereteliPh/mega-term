@@ -29,6 +29,31 @@
 	}
 }
 
+.flex-ul {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin: 20px 0;
+	padding-left: 0;
+	list-style: none;
+
+	li {
+		display: flex;
+		gap: 15px;
+		justify-content: space-between;
+		color: var(--fc-gray);
+		line-height: 1;
+
+		b,
+		strong {
+			margin-left: auto;
+			color: var(--fc-dark);
+			font-weight: 400;
+			text-align: right;
+		}
+	}
+}
+
 .main-table {
 	height: 100%;
 	font-size: 16px;

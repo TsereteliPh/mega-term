@@ -10,6 +10,11 @@ function change_toolbar($args)
 			'classes' => 'check-ul',
 		],
 		[
+			'title' => 'Список с характеристик',
+			'selector' => 'ul',
+			'classes' => 'flex-ul',
+		],
+		[
 			'title' => 'Адаптивная таблица',
 			'selector' => 'table',
 			'classes' => 'main-table',
