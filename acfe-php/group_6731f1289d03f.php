@@ -578,6 +578,13 @@ acf_add_local_field_group(array(
 				'value' => 'page',
 			),
 		),
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'product',
+			),
+		),
 	),
 	'menu_order' => 0,
 	'position' => 'normal',
@@ -589,8 +596,7 @@ acf_add_local_field_group(array(
 		1 => 'comments',
 		2 => 'discussion',
 		3 => 'revisions',
-		4 => 'the_content',
-		5 => 'slug',
+		4 => 'slug',
 	),
 	'active' => true,
 	'description' => '',
@@ -602,7 +608,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1732869807,
+	'modified' => 1733841643,
 ));
 
 endif;

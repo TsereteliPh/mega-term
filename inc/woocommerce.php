@@ -3,7 +3,57 @@ remove_action( 'woocommerce_before_main_content','woocommerce_output_content_wra
 remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0 );
 remove_action( 'woocommerce_before_main_content','woocommerce_output_content_wrapper_end', 10, 0 );
 
+remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+
+remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+remove_action( 'woocommerce_review_before', 'woocommerce_review_display_gravatar', 10 );
+
 // ---------------------------------------------------------------- Filters
+
+// Change title for review tabs
+add_filter( 'woocommerce_product_tabs', 'adem_woocommerce_product_tabs', 25 );
+function adem_woocommerce_product_tabs( $tabs ) {
+	global $product;
+
+	if ( ! empty( $tabs[ 'reviews' ] ) ) $tabs[ 'reviews' ][ 'title' ] = sprintf( 'Отзывы <span>(%d)</span>', $product->get_review_count() );
+
+	return $tabs;
+}
+
+// Adem rewrite product-category / Fix 404 error
+add_filter( 'init', 'adem_product_category_base_same_shop_base' );
+function adem_product_category_base_same_shop_base( $flash = false ){
+    $terms = get_terms( array(
+        'taxonomy' => 'product_cat',
+        'post_type' => 'product',
+        'hide_empty' => false,
+    ) );
+    if ( $terms && ! is_wp_error( $terms ) ) {
+        $siteurl = esc_url( home_url( '/' ) );
+        foreach ( $terms as $term ) {
+            $term_slug = $term->slug;
+            $baseterm = str_replace( $siteurl, '', get_term_link( $term->term_id, 'product_cat' ) );
+
+            add_rewrite_rule( $baseterm . '?$', 'index.php?product_cat=' . $term_slug, 'top' );
+            add_rewrite_rule( $baseterm . '/page/([0-9]{1,})/?$', 'index.php?product_cat=' . $term_slug . '&paged=$matches[1]', 'top' );
+            add_rewrite_rule( $baseterm . '(?:feed/)?(feed|rdf|rss|rss2|atom)/?$', 'index.php?product_cat=' . $term_slug . '&feed=$matches[1]', 'top' );
+
+        }
+    }
+    if ( $flash == true )
+        flush_rewrite_rules( false );
+}
 
 // ---------------------------------------------------------------- Functions
 
@@ -39,7 +89,7 @@ function wc_product_ending( $num ) {
 }
 
 // Update cart quantity
-add_action('wp_footer', 'adem_cart_update_qty_script');
+add_action( 'wp_footer', 'adem_cart_update_qty_script' );
 function adem_cart_update_qty_script() {
 	if ( is_cart() ) {
 		?>
@@ -47,12 +97,12 @@ function adem_cart_update_qty_script() {
 				document.addEventListener('DOMContentLoaded', function () {
 					changeInputQuantity('.cart', true);
 					let update_cart;
-					jQuery('body').delegate(".cart__item .qty", "change", function () {
+					jQuery('body').delegate('.cart__item .qty', 'change', function () {
 						if (update_cart != null) {
 							clearTimeout(update_cart);
 						}
 						update_cart = setTimeout(function () {
-							jQuery("[name='update_cart']").trigger("click")
+							jQuery('[name="update_cart"]').trigger('click')
 						}, 1000);
 					});
 				});
@@ -60,30 +110,6 @@ function adem_cart_update_qty_script() {
 		<?php
 	}
 }
-
-// Adem rewrite product-category / Fix 404 error
-function adem_product_category_base_same_shop_base( $flash = false ){
-    $terms = get_terms(array(
-        'taxonomy' => 'product_cat',
-        'post_type' => 'product',
-        'hide_empty' => false,
-    ));
-    if ($terms && !is_wp_error($terms)) {
-        $siteurl = esc_url(home_url('/'));
-        foreach ($terms as $term) {
-            $term_slug = $term->slug;
-            $baseterm = str_replace($siteurl, '', get_term_link($term->term_id, 'product_cat'));
-
-            add_rewrite_rule($baseterm . '?$','index.php?product_cat=' . $term_slug,'top');
-            add_rewrite_rule($baseterm . '/page/([0-9]{1,})/?$', 'index.php?product_cat=' . $term_slug . '&paged=$matches[1]','top');
-            add_rewrite_rule($baseterm . '(?:feed/)?(feed|rdf|rss|rss2|atom)/?$', 'index.php?product_cat=' . $term_slug . '&feed=$matches[1]','top');
-
-        }
-    }
-    if ($flash == true)
-        flush_rewrite_rules(false);
-}
-add_filter( 'init', 'adem_product_category_base_same_shop_base');
 
 add_action( 'create_term', 'adem_product_cat_same_shop_edit_success', 10, 2 );
 function adem_product_cat_same_shop_edit_success( $term_id, $taxonomy ) {

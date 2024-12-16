@@ -1,0 +1,30 @@
+.attributes {
+	display: flex;
+	flex-direction: column;
+
+	&__item {
+		display: flex;
+		gap: 30px;
+		align-items: center;
+		justify-content: space-between;
+		min-height: 30px;
+		padding: 0 10px;
+		border-radius: 5px;
+
+		&:nth-child(odd) {
+			background: var(--bg-tertiary);
+		}
+	}
+
+	&__item-label {
+		color: var(--fc-gray);
+		font-size: 16px;
+	}
+
+	&__item-value {
+
+		p {
+			margin: 0;
+		}
+	}
+}

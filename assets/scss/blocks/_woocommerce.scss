@@ -1,0 +1,135 @@
+.woocommerce {
+
+	&__price {
+		display: flex;
+		flex-direction: column;
+		font-family: var(--fonr-secondary);
+
+		.price {
+			display: flex;
+			flex-direction: column;
+		}
+
+		del {
+			color: var(--fc-gray);
+			font-size: 12px;
+
+			bdi {
+				font-size: 12px;
+			}
+		}
+
+		ins,
+		bdi {
+			font-size: 24px;
+			text-decoration: none;
+		}
+	}
+
+	.woocommerce-notices-wrapper {
+
+		.woocommerce-error,
+		.woocommerce-message {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 15px;
+			justify-content: space-between;
+			margin: 0 0 30px;
+			padding: 20px 20px 20px 50px;
+			background: var(--bg-tertiary);
+			border-radius: 10px;
+
+			@include xs {
+				gap: 10px;
+				padding: 35px 10px 20px;
+				font-size: 12px;
+			}
+
+			&::before {
+				top: 20px;
+				color: var(--primary);
+
+				@include xs {
+					top: 10px;
+					left: 10px;
+				}
+			}
+
+			&::after {
+				display: none;
+			}
+
+			li {
+				color: var(--fc-dark);
+			}
+
+			.button {
+				display: flex;
+				align-items: center;
+				width: fit-content;
+				padding: 10px 20px;
+				color: var(--fc-light);
+				font-weight: 700;
+				font-size: 12px;
+				line-height: 1;
+				text-align: center;
+				text-decoration: none;
+				background: var(--fc-dark);
+				border: none;
+				border-radius: 10px;
+				transition: var(--transition);
+
+				@include xs {
+					font-size: 10px;
+				}
+
+				@include mouse {
+
+					&:hover {
+						transform: translateY(-3px);
+					}
+				}
+			}
+		}
+
+		.woocommerce-error {
+			border-color: var(--primary);
+
+			&::before {
+				color: var(--primary);
+			}
+		}
+
+		.woocommerce-message {
+			border-color: #57e250;
+
+			&::before {
+				color: #57e250;
+			}
+		}
+	}
+
+	.woocommerce-variation {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.star-rating {
+		float: none;
+		width: 80px;
+		height: 15px;
+
+		&::before {
+			color: var(--primary);
+		}
+
+		span {
+			float: none;
+
+			&::before {
+				color: var(--primary);
+			}
+		}
+	}
+}

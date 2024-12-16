@@ -239,6 +239,40 @@ function tabs() {
 	}
 }
 
+function changeInputQuantity(form, dispatch = false) {
+	const formEl = document.querySelectorAll(form);
+	if (formEl) {
+		formEl.forEach(form => {
+			form.addEventListener('click', function (e) {
+				if (e.target.classList.contains('quantity__btn')) {
+					let input = e.target.closest('.quantity').querySelector('.quantity__input');
+					let val = parseInt(input.value);
+					let min = parseInt(input.getAttribute('min'));
+					let max = parseInt(input.getAttribute('max'));
+					let step = parseInt(input.getAttribute('step'));
+
+					if (e.target.classList.contains('quantity__btn--add')) {
+						if (max && (max <= val)) {
+							input.value = max;
+						} else {
+							input.value = val + step;
+						}
+					} else {
+						if ((min || min == 0) && (min >= val - step)) {
+							input.value = min;
+						} else if (val > 1) {
+							input.value = val - step;
+						}
+					}
+
+					const changeQuantityInput = new Event('change', {bubbles: true, cancelable: true});
+					input.dispatchEvent(changeQuantityInput);
+				}
+			});
+		});
+	}
+}
+
 // ---------------------------------------------------------------- Ajax
 
 function showMorePosts() {
@@ -395,6 +429,40 @@ function initBrandsSlider() {
 	});
 }
 
+function initProductGallerySlider() {
+	const productGallery = document.querySelector('.product__gallery');
+
+	if (!productGallery) return;
+
+	let productThumb = productGallery.querySelector('.product__gallery-thumb-swiper');
+	let productBig = productGallery.querySelector('.product__gallery-big');
+
+	let thumbProductSlider = new Swiper(productThumb, {
+		direction: 'horizontal',
+		spaceBetween: 10,
+		slidesPerView: 3,
+		watchSlidesProgress: true,
+		navigation: {
+			nextEl: productThumb.parentNode.querySelector('.controls__next'),
+			prevEl: productThumb.parentNode.querySelector('.controls__prev')
+		},
+		breakpoints: {
+			577: {
+				direction: 'vertical',
+				slidesPerView: 4
+			}
+		}
+	});
+
+	let bigProductSlider = new Swiper(productBig, {
+		slidesPerView: 'auto',
+		spaceBetween: 10,
+		thumbs: {
+			swiper: thumbProductSlider,
+		}
+	});
+}
+
 // ---------------------------------------------------------------- Header
 
 function header() {
@@ -508,6 +576,7 @@ function mainTextHeightHandler() {
 
 document.addEventListener('DOMContentLoaded', function () {
 	accordion();
+	changeInputQuantity('.product__form');
 	header();
 	headerCatalogToggle();
 	headerSmallCatsHandler();
@@ -526,4 +595,5 @@ document.addEventListener('DOMContentLoaded', function () {
 	initReviewSlider();
 	initArticleSlider();
 	initBrandsSlider();
+	initProductGallerySlider();
 });

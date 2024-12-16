@@ -1,13 +1,17 @@
 //main
 @import "blocks/animations";
+@import "blocks/attributes";
 @import "blocks/brands-slider";
 @import "blocks/buttons";
 @import "blocks/controls";
 @import "blocks/form-elements";
 @import "blocks/main-border";
 @import "blocks/pagination";
+@import "blocks/quantity";
 @import "blocks/text-styles";
 @import "blocks/title";
+@import "blocks/woo-variation-swatches";
+@import "blocks/woocommerce";
 
 // cards
 @import "blocks/article-card";
@@ -28,6 +32,7 @@
 @import "blocks/main-text";
 @import "blocks/modal";
 @import "blocks/not-found";
+@import "blocks/product";
 @import "blocks/review-slider";
 @import "blocks/reviews";
 @import "blocks/single-article";
