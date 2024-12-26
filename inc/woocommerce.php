@@ -36,6 +36,8 @@ remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_l
 
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+
 // ---------------------------------------------------------------- Filters
 
 // Change title for review tabs
@@ -70,6 +72,28 @@ function adem_product_category_base_same_shop_base( $flash = false ){
     }
     if ( $flash == true )
         flush_rewrite_rules( false );
+}
+
+// Change cart coupon
+add_filter( 'woocommerce_cart_totals_coupon_label', 'adem_cart_totals_coupon_label', 10, 2 );
+function adem_cart_totals_coupon_label( $label, $coupon ) {
+	if ( $coupon->get_code() ) {
+        // New label
+        $label = sprintf( 'Активирован купон: <span>' . $coupon->get_code() . '</span>' );
+    }
+
+    return $label;
+}
+
+// Change remove coupon link
+add_filter( 'woocommerce_cart_totals_coupon_html', 'custom_cart_totals_coupon_html', 30, 3 );
+function custom_cart_totals_coupon_html( $coupon_html, $coupon, $discount_amount_html ) {
+
+	$discount_amount_html = '<span class="cart__coupon-summ">' . apply_filters( 'woocommerce_coupon_discount_amount_html', $discount_amount_html, $coupon ) . '</span>';
+
+	$coupon_html = $discount_amount_html . ' <a href="' . esc_url( add_query_arg( 'remove_coupon', urlencode( $coupon->get_code() ), defined( 'WOOCOMMERCE_CHECKOUT' ) ? wc_get_checkout_url() : wc_get_cart_url() ) ) . '" class="woocommerce-remove-coupon cart__coupon-remove" data-coupon="' . esc_attr( $coupon->get_code() ) . '">[Сбросить]</a>';
+
+    return $coupon_html;
 }
 
 // ---------------------------------------------------------------- Functions

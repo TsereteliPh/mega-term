@@ -323,4 +323,34 @@
 		border-radius: 10px;
 		transition: var(--transition);
 	}
+
+	table.shop_table {
+		margin: 0;
+		border: 1px solid var(--fc-gray);
+		border-radius: 10px;
+
+		&.account__order-table {
+			border-color: var(--fc-gray);
+		}
+
+		tbody {
+
+			th,
+			td {
+				border-color: var(--fc-gray);
+
+				@include xs {
+					padding: 10px;
+				}
+			}
+		}
+
+		td.product-name {
+
+			.wc-item-meta {
+				margin: 0;
+				padding: 0;
+			}
+		}
+	}
 }
