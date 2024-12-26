@@ -46,8 +46,8 @@ if ( $product->is_in_stock() ) : ?>
 		<div class="product__add-to-cart">
 			<?php if ( $quantityInCart > 0 ) : ?>
 				<div class="product__count">
-					В корзине <?php echo $quantityInCart; ?>
-					<?php echo wc_product_ending( $quantityInCart ); ?>
+					В корзине
+					<?php echo product_ending( $quantityInCart ); ?>
 				</div>
 
 				<a href="<?php echo wc_get_cart_url(); ?>" class="btn product__go-to-cart-btn">
