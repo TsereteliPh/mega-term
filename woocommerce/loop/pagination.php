@@ -24,9 +24,9 @@ $current = isset( $current ) ? $current : wc_get_loop_prop( 'current_page' );
 $base    = isset( $base ) ? $base : esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) );
 $format  = isset( $format ) ? $format : '';
 
-// if ( $total <= 1 ) {
-// 	return;
-// }
+if ( $total <= 1 ) {
+	return;
+}
 ?>
 <nav class="product-pagination" aria-label="<?php esc_attr_e( 'Product Pagination', 'woocommerce' ); ?>">
 	<?php
@@ -37,8 +37,8 @@ $format  = isset( $format ) ? $format : '';
 				'base'      => $base,
 				'format'    => $format,
 				'add_args'  => false,
-				'current'   => max( 1, 6 ),
-				'total'     => 100,
+				'current'   => max( 1, $current ),
+				'total'     => $total,
 				'prev_text' => '<svg class="product-pagination__' . ( is_rtl() ? 'right' : 'left' ) . '" width="9" height="5"><use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-caret"></use></svg>',
 				'next_text' => '<svg class="product-pagination__' . ( is_rtl() ? 'left' : 'right' ) . '" width="9" height="5"><use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-caret"></use></svg>',
 				'type'      => 'list',
