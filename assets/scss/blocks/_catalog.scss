@@ -1,0 +1,327 @@
+.catalog {
+	position: relative;
+	overflow: hidden;
+
+	&__cats {
+		padding: 0 60px;
+
+		@include hg {
+			padding: 0 45px;
+		}
+
+		@include sm {
+			margin-top: 20px;
+			padding: 0;
+		}
+	}
+
+	&__cats-swiper {
+		margin-top: 25px;
+
+		@include sm {
+			margin-top: 20px;
+			overflow: visible;
+		}
+	}
+
+	&__cats-item {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		height: auto;
+		min-height: 180px;
+		padding: 15px 20px;
+		overflow: hidden;
+		background: var(--bg-tertiary);
+		border-radius: 10px;
+
+		@include sm {
+			max-width: 220px;
+		}
+
+		@include xs {
+			max-width: 200px;
+		}
+	}
+
+	&__cats-item-title {
+		font-weight: 700;
+	}
+
+	&__cats-item-info {
+		color: var(--fc-gray);
+	}
+
+	&__cats-item-img {
+		position: absolute;
+		right: 0;
+		bottom: -20px;
+		z-index: -1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: calc(100% - 60px);
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+	&__cats-item-link {
+		align-self: flex-end;
+		margin-top: auto;
+		transform: rotate(-90deg);
+	}
+
+	&__cats-pagination {
+		display: none;
+
+		@include sm {
+			display: flex;
+		}
+	}
+
+	&__cats-controls {
+
+		@include sm {
+			display: none;
+		}
+	}
+
+	&__content {
+		display: grid;
+		grid-template-columns: 300px 1fr;
+		gap: 30px 50px;
+		margin-top: 40px;
+
+		@include lg {
+			grid-template-columns: 250px 1fr;
+		}
+
+		@include md {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__filters {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include md {
+			display: none;
+			width: 100%;
+			max-width: 350px;
+			padding: 40px 20px;
+			border-radius: 10px;
+		}
+
+		.widgettitle {
+			font-size: 14px;
+		}
+
+		.carousel__button.is-close {
+			top: 10px;
+			right: 10px;
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			width: fit-content;
+			height: fit-content;
+			padding: 0;
+			color: var(--primary);
+			background: none;
+			border: none;
+			box-shadow: none;
+			opacity: 1;
+
+			&::before {
+				display: block;
+				color: var(--fc-dark);
+				font-size: 14px;
+				content: "Закрыть";
+
+				@include xs {
+					display: none;
+				}
+			}
+
+			svg {
+				width: 10px;
+				height: 10px;
+				filter: none;
+
+				@include xs {
+					width: 15px;
+					height: 15px;
+				}
+			}
+		}
+	}
+
+	&__products {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	&__no-products {
+
+		.woocommerce-info {
+			margin: 0;
+		}
+	}
+
+	&__panel {
+		display: grid;
+		grid-template-columns: 1fr 50px;
+		gap: 20px 30px;
+		align-items: center;
+		justify-content: space-between;
+
+		@include md {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@include xs {
+			grid-template-columns: 1fr;
+			gap: 15px 30px;
+		}
+
+		.woocommerce-notices-wrapper {
+			grid-column: span 2;
+
+			@include xs {
+				grid-column: auto;
+				order: -2;
+			}
+		}
+	}
+
+	&__orderby {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 5px 20px;
+		align-items: center;
+		font-size: 12px;
+		font-family: var(--font-secondary);
+
+		@include md {
+			grid-column: span 2;
+		}
+
+		@include xs {
+			grid-column: auto;
+		}
+	}
+
+	&__orderby-form {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 5px 20px;
+		align-items: center;
+		margin-bottom: 0;
+	}
+
+	&__orderby-btn {
+		padding: 0;
+		color: var(--fc-gray);
+		line-height: 1;
+		background: none;
+		border: none;
+
+		&.active {
+			color: var(--primary);
+			cursor: default;
+		}
+	}
+
+	&__view {
+		display: flex;
+		flex-shrink: 0;
+		gap: 5px;
+		align-items: center;
+		align-self: end;
+		justify-content: space-between;
+
+		@include md {
+			justify-content: flex-start;
+		}
+
+		@include xs {
+			display: none;
+		}
+	}
+
+	&__view-option {
+		height: 20px;
+		line-height: 1;
+
+		input {
+			display: none;
+			appearance: none;
+		}
+
+		svg {
+			width: auto;
+			height: 100%;
+			color: #d9d9d9;
+		}
+
+		input:checked + svg {
+			color: var(--primary);
+		}
+	}
+
+	&__button-filter {
+		display: none;
+
+		@include md {
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			align-self: end;
+			justify-content: center;
+			justify-self: end;
+			width: fit-content;
+			padding: 0;
+			color: var(--fc-dark);
+			font-weight: 600;
+			background: none;
+			border: none;
+		}
+
+		@include xs {
+			justify-self: start;
+			order: -1;
+		}
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px 10px;
+
+		@include lg {
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
+
+	&__item {
+
+		@include lg {
+			flex: 1 1 280px;
+			width: 100%;
+			max-width: calc(50% - 5px);
+		}
+
+		@include sm {
+			max-width: 100%;
+		}
+	}
+}

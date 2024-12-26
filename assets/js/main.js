@@ -463,6 +463,41 @@ function initProductGallerySlider() {
 	});
 }
 
+function initCatalogCatsSlider() {
+	const slider = document.querySelector('.catalog__cats');
+
+	if (!slider) return;
+
+	let swiper = new Swiper(slider.querySelector('.swiper'), {
+		slidesPerView: 'auto',
+		spaceBetween: 10,
+		navigation: {
+			nextEl: slider.querySelector('.controls__next'),
+			prevEl: slider.querySelector('.controls__prev'),
+		},
+		pagination: {
+			el: slider.querySelector('.pagination'),
+			bulletClass: 'pagination__bullet',
+			bulletActiveClass: 'active',
+			clickable: true
+		},
+		breakpoints: {
+			1440: {
+				slidesPerView: 6,
+			},
+			1280: {
+				slidesPerView: 5,
+			},
+			992: {
+				slidesPerView: 4,
+			},
+			769: {
+				slidesPerView: 3,
+			}
+		}
+	});
+}
+
 // ---------------------------------------------------------------- Header
 
 function header() {
@@ -574,6 +609,24 @@ function mainTextHeightHandler() {
 	});
 }
 
+function orderbyFormButtonsListener() {
+	const orderbyForm = document.querySelector('.catalog__orderby-form');
+
+    if (!orderbyForm) return;
+
+    const buttons = orderbyForm.querySelectorAll('.catalog__orderby-btn');
+	const select = orderbyForm.querySelector('.catalog__orberby-select');
+
+	orderbyForm.addEventListener('click', function(evt) {
+		if (evt.target.classList.contains('catalog__orderby-btn')) {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            evt.target.classList.add('active');
+            select.value = evt.target.dataset.value;
+			this.submit();
+        }
+	});
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	accordion();
 	changeInputQuantity('.product__form');
@@ -581,6 +634,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	headerCatalogToggle();
 	headerSmallCatsHandler();
 	mainTextHeightHandler();
+	orderbyFormButtonsListener();
 	setHeaderScrollClass();
 	setFileName();
 	setNameMask();
@@ -596,4 +650,5 @@ document.addEventListener('DOMContentLoaded', function () {
 	initArticleSlider();
 	initBrandsSlider();
 	initProductGallerySlider();
+	initCatalogCatsSlider();
 });

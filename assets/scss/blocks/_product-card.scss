@@ -1,0 +1,158 @@
+.product-card {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	height: auto;
+	padding: 10px 20px 20px;
+
+	@include lg {
+		padding: 20px 10px;
+	}
+
+	&__flashes {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		z-index: var(--ui-index-1);
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		width: 50px;
+		height: auto;
+	}
+
+	&__flash {
+		display: grid;
+		place-content: center;
+		width: 100%;
+		min-height: 30px;
+		padding: 5px;
+		font-weight: 700;
+		font-size: 10px;
+		line-height: 1;
+		border: 1px solid #d9d9d9;
+		border-radius: 10px;
+
+		&--sale {
+			color: var(--secondary);
+			border-color: var(--secondary);
+		}
+	}
+
+	&__fav {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		padding: 0;
+		background: none;
+		border: none;
+
+		@include lg {
+			right: 10px;
+		}
+	}
+
+	&__img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 180px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+		}
+	}
+
+	&__brand,
+	&__sku {
+		font-weight: 700;
+		font-size: 12px;
+	}
+
+	&__brand {
+		@include ui-link(#015397);
+	}
+
+	&__sku {
+		color: var(--secondary);
+	}
+
+	&__link {
+		display: block;
+		margin-top: 5px;
+		font-weight: 700;
+		@include ui-link(var(--fc-dark));
+	}
+
+	&__attributes {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		gap: 5px;
+		justify-content: center;
+		margin-top: 10px;
+	}
+
+	&__attribute {
+		position: relative;
+		display: flex;
+		gap: 10px;
+		justify-content: space-between;
+		padding-left: 15px;
+
+		&::before {
+			position: absolute;
+			top: 5px;
+			left: 0;
+			width: 5px;
+			height: 5px;
+			background: var(--fc-gray);
+			border-radius: 50%;
+			content: "";
+		}
+	}
+
+	&__attribute-values {
+		font-weight: 600;
+		text-align: right;
+	}
+
+	&__info {
+		display: flex;
+		gap: 15px;
+		align-items: flex-end;
+		justify-content: space-between;
+		margin-top: 15px;
+	}
+
+	&__price {
+		display: flex;
+		flex-direction: column;
+		font-family: var(--font-secondary);
+
+		del {
+			color: var(--fc-gray);
+			font-size: 12px;
+		}
+
+		ins {
+			font-size: 18px;
+			text-decoration: none;
+		}
+
+		&--variable {
+			display: block;
+		}
+	}
+
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 5px 20px;
+		align-items: center;
+		justify-content: flex-end;
+	}
+}

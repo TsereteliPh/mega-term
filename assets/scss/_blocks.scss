@@ -7,6 +7,7 @@
 @import "blocks/form-elements";
 @import "blocks/main-border";
 @import "blocks/pagination";
+@import "blocks/product-pagination";
 @import "blocks/quantity";
 @import "blocks/text-styles";
 @import "blocks/title";
@@ -15,6 +16,7 @@
 
 // cards
 @import "blocks/article-card";
+@import "blocks/product-card";
 @import "blocks/review-card";
 
 // blocks
@@ -23,6 +25,7 @@
 @import "blocks/archive-block";
 @import "blocks/article-slider";
 @import "blocks/breadcrumbs";
+@import "blocks/catalog";
 @import "blocks/contacts";
 @import "blocks/faq";
 @import "blocks/footer";

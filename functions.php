@@ -124,6 +124,16 @@ if ( ! function_exists( 'adem_setup' ) ) {
 
 add_action( 'after_setup_theme', 'adem_setup' );
 
+// Register Sidebar
+function adem_register_sidebars() {
+	register_sidebar( [
+		'name' => 'Сайдбар каталога',
+		'id' => 'catalog_sidebar',
+		'before_sidebar' => '<ul class="reset-list catalog__filters" id="filters">',
+		'after_sidebar'  => '</ul>',
+	] );
+}
+
 // Return classic widgets
 add_filter( 'gutenberg_use_widgets_block_editor', '__return_false' );
 add_filter( 'use_widgets_block_editor', '__return_false' );
@@ -143,6 +153,8 @@ function adem_scripts() {
 	wp_enqueue_script( 'adem', get_template_directory_uri() . '/assets/js/main.js', array(), _S_VERSION, true ); //! change to minified version
 	wp_localize_script( 'adem', 'adem_ajax', array( 'url' => admin_url( 'admin-ajax.php' ) ) );
 }
+
+add_action('widgets_init', 'adem_register_sidebars');
 
 // disable scale images
 add_filter( 'big_image_size_threshold', '__return_false' );

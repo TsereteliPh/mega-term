@@ -19,6 +19,23 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_r
 
 remove_action( 'woocommerce_review_before', 'woocommerce_review_display_gravatar', 10 );
 
+remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
+remove_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description', 10 );
+
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+
+remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
+
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+
+remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
+
 // ---------------------------------------------------------------- Filters
 
 // Change title for review tabs
@@ -71,21 +88,38 @@ function get_product_quantity_in_cart( $product_id ) {
 	return $quantity;
 }
 
-// Product ending
-function wc_product_ending( $num ) {
+// Category ending
+function category_ending( $num ) {
 	$number = substr( $num, -2 );
 
 	if ( $number > 10 and $number < 20 ) {
-		$ending = 'товаров';
+		$ending = 'й';
 	} else {
 		$number = substr( $number, -1 );
 
-		if ( $number == 1 ) $ending = 'товар';
-		if ( $number > 1 ) $ending = 'товара';
-		if ( $number > 4 || $number == 0 ) $ending = 'товаров';
+		if ( $number == 1 ) $ending = 'я';
+		if ( $number > 1 ) $ending = 'и';
+		if ( $number > 4 || $number == 0 ) $ending = 'й';
 	}
 
-	echo $ending;
+	echo $num . ' категори' . $ending;
+}
+
+// Product ending
+function product_ending( $num ) {
+	$number = substr( $num, -2 );
+
+	if ( $number > 10 and $number < 20 ) {
+		$ending = 'ов';
+	} else {
+		$number = substr( $number, -1 );
+
+		if ( $number == 1 ) $ending = '';
+		if ( $number > 1 ) $ending = 'а';
+		if ( $number > 4 || $number == 0 ) $ending = 'ов';
+	}
+
+	echo $num . ' товар' . $ending;
 }
 
 // Update cart quantity
@@ -173,4 +207,35 @@ function adem_recursive_header_categories( $parent_id = 0, $level = 0 ) {
 
 		echo '</ul>';
 	}
+}
+
+// Custom nav html for catalog filters
+add_filter( 'woocommerce_layered_nav_term_html', 'adem_layered_nav_term_html', 10, 4 );
+function adem_layered_nav_term_html( $term_html, $term, $link, $count ) {
+	$filter_name = 'filter_' . wc_attribute_taxonomy_slug( $term->taxonomy );
+	$current_filters = isset( $_GET[ $filter_name ] ) ? explode( ',', wc_clean( wp_unslash( $_GET[ $filter_name ] ) ) ) : array();
+	$current = false;
+	$color = false;
+
+	foreach ( $current_filters as $item ) {
+		if ( $term->slug == $item ) $current = true;
+	}
+
+	$term_html = sprintf(
+		'<a rel="nofollow" class="square-checkbox" href="%1$s">
+			<input type="checkbox" class="hidden square-checkbox__input" %2$s>
+			<span class="square-checkbox__switcher"></span>
+			<span class="square-checkbox__text">%3$s</span>
+		</a>',
+		esc_url( $link ),
+		$current ? 'checked' : '',
+		esc_html( $term->name ),
+	);
+
+    return $term_html;
+}
+
+// Cookie
+if ( ! isset( $_COOKIE['woocommerce_catalog_flex'] ) ) {
+	setcookie( 'woocommerce_catalog_flex', 0, time() + 3600 * 24 * 30, '/' );
 }
