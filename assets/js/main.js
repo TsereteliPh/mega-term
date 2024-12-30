@@ -132,6 +132,8 @@ function setNameMask() {
 
 function sendForm() {
 	document.querySelectorAll('form[name]').forEach(function (form) {
+		if (form.name === 'checkout' ) return;
+
 		form.addEventListener('submit', function (e) {
 			e.preventDefault();
 			const form = this;

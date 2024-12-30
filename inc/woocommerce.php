@@ -38,6 +38,14 @@ remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_pr
 
 remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
 
+remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10 );
+remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+
+remove_action( 'woocommerce_checkout_before_customer_details', 'wc_get_pay_buttons', 30 );
+
+remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20 );
+remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_conditions_page_content', 30 );
+
 // ---------------------------------------------------------------- Filters
 
 // Change title for review tabs
@@ -94,6 +102,73 @@ function custom_cart_totals_coupon_html( $coupon_html, $coupon, $discount_amount
 	$coupon_html = $discount_amount_html . ' <a href="' . esc_url( add_query_arg( 'remove_coupon', urlencode( $coupon->get_code() ), defined( 'WOOCOMMERCE_CHECKOUT' ) ? wc_get_checkout_url() : wc_get_cart_url() ) ) . '" class="woocommerce-remove-coupon cart__coupon-remove" data-coupon="' . esc_attr( $coupon->get_code() ) . '">[Сбросить]</a>';
 
     return $coupon_html;
+}
+
+// Custom form fields args
+add_filter( 'woocommerce_form_field_args', 'adem_form_field_args', 10, 3 );
+function adem_form_field_args( $args, $key, $value = null ) {
+
+	switch ( $args['type'] ) {
+
+		case "select" :  /* Targets all select input type elements, except the country and state select input types */
+			$args['class'][] = 'shop-field';
+			$args['input_class'] = array( 'shop-field__input' );
+			//$args['custom_attributes']['data-plugin'] = 'select2';
+			$args['label_class'] = array( 'shop-label' );
+			$args['custom_attributes'] = array(
+				'data-plugin' => 'select2',
+				'data-allow-clear' => 'true',
+				'aria-hidden' => 'true'
+			);
+		break;
+
+		case 'country' : /* By default WooCommerce will populate a select with the country names - $args defined for this specific input type targets only the country select element */
+			$args['class'][] = 'shop-field';
+			$args['label_class'] = array( 'shop-label' );
+		break;
+
+		case "state" :
+			$args['class'][] = 'shop-field';
+			$args['input_class'] = array( 'shop-field__input' );
+			//$args['custom_attributes']['data-plugin'] = 'select2';
+			$args['label_class'] = array( 'shop-label' );
+			$args['custom_attributes'] = array(
+				'data-plugin' => 'select2',
+				'data-allow-clear' => 'true',
+				'aria-hidden' => 'true',
+			);
+		break;
+
+
+		case "password" :
+		case "text" :
+		case "email" :
+		case "tel" :
+		case "number" :
+			$args['class'][] = 'shop-field';
+			$args['input_class'] = array( 'shop-field__input' );
+			$args['label_class'] = array( 'shop-label' );
+		break;
+
+		case 'textarea' :
+			$args['input_class'] = array( 'shop-field__input' );
+			$args['label_class'] = array( 'shop-label' );
+		break;
+
+		case 'checkbox' :
+		break;
+
+		case 'radio' :
+		break;
+
+		default :
+			$args['class'][] = 'shop-field';
+			$args['input_class'] = array( 'shop-field__input' );
+			$args['label_class'] = array( 'shop-label' );
+		break;
+	}
+
+	return $args;
 }
 
 // ---------------------------------------------------------------- Functions
