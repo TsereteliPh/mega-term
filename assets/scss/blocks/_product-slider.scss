@@ -1,0 +1,49 @@
+.product-slider {
+	overflow: hidden;
+
+	&__slider {
+		margin-top: 30px;
+		padding: 0 60px;
+
+		@include hg {
+			padding: 0 45px;
+		}
+
+		@include md {
+			padding: 0;
+		}
+
+		@include sm {
+			margin-top: 20px;
+		}
+	}
+
+	&__swiper {
+
+		@include md {
+			overflow: visible;
+		}
+	}
+
+	&__item {
+
+		@include md {
+			max-width: 330px;
+		}
+	}
+
+	&__pagination {
+		display: none;
+
+		@include md {
+			display: flex;
+		}
+	}
+
+	&__controls {
+
+		@include md {
+			display: none;
+		}
+	}
+}

@@ -120,7 +120,7 @@ $sku = $product->get_sku();
 
 		<div class="product-card__buttons">
 			<?php if ( $args['no-woocommerce'] ) : ?>
-				<a href="<?php the_permalink(); ?>" class="product-card__add-to-cart product-card__add-to-cart--variable">Подробнее</a>
+				<a href="<?php the_permalink(); ?>" class="btn product-card__add-to-cart product-card__add-to-cart--variable">Подробнее</a>
 			<?php else : ?>
 				<?php
 					/**

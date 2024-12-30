@@ -500,6 +500,44 @@ function initCatalogCatsSlider() {
 	});
 }
 
+function initProductSlider() {
+	const sliders = document.querySelectorAll('.product-slider');
+
+	if (!sliders) return;
+
+	sliders.forEach(slider => {
+		let swiper = new Swiper(slider.querySelector('.swiper'), {
+			slidesPerView: 'auto',
+			spaceBetween: 10,
+			centerInsufficientSlides: true,
+			pagination: {
+				el: slider.querySelector('.pagination'),
+				bulletClass: 'pagination__bullet',
+				bulletActiveClass: 'active',
+				clickable: true
+			},
+			navigation: {
+				nextEl: slider.querySelector('.controls__next'),
+				prevEl: slider.querySelector('.controls__prev'),
+			},
+			breakpoints: {
+				1440: {
+					slidesPerView: 4,
+				},
+				1280: {
+					slidesPerView: 4,
+				},
+				992: {
+					slidesPerView: 3,
+				},
+				769: {
+					// slidesPerView: 3,
+				}
+			}
+		});
+	});
+}
+
 // ---------------------------------------------------------------- Header
 
 function header() {
@@ -653,4 +691,5 @@ document.addEventListener('DOMContentLoaded', function () {
 	initBrandsSlider();
 	initProductGallerySlider();
 	initCatalogCatsSlider();
+	initProductSlider();
 });
