@@ -36,7 +36,7 @@ function accordion() {
 
 	accordionHolders.forEach(accordion => {
 		const accordionBtns = accordion.querySelectorAll('button');
-		const accordionBreakpoint = parseInt(accordion.dataset.breakpoint);
+		const accordionBreakpoint = parseInt(accordion.dataset.breakpoint) || 9999;
 
 		const accordionBtnsClose = () => {
 			for (let btn of accordionBtns) {
@@ -47,18 +47,18 @@ function accordion() {
 			}
 		}
 
-		accordionBtns.forEach(btn => {
-			btn.addEventListener('click', function() {
-				if (this.classList.contains('active')) {
-					accordionBtnsClose();
-				} else {
-					accordionBtnsClose();
-					this.classList.add('active');
-					if (btn.nextElementSibling && (window.innerWidth <= accordionBreakpoint)) {
-						slideToggle(this.nextElementSibling);
-					}
+		accordion.addEventListener('click', function(evt) {
+			if (evt.target.nodeName !== 'BUTTON') return
+
+			if (evt.target.classList.contains('active')) {
+				accordionBtnsClose();
+			} else {
+				accordionBtnsClose();
+				evt.target.classList.add('active');
+				if (evt.target.nextElementSibling && (window.innerWidth <= accordionBreakpoint)) {
+					slideToggle(evt.target.nextElementSibling);
 				}
-			})
+			}
 		});
 	});
 }
