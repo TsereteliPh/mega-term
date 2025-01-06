@@ -78,4 +78,67 @@
 		line-height: 1.3;
 		letter-spacing: 0.28px;
 	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		max-width: 440px;
+		animation: none;
+
+		&.invalid {
+			animation: form-invalid 0.3s ease-out;
+
+			.modal__form-error {
+				display: block;
+			}
+		}
+	}
+
+	&__form-error {
+		display: none;
+		color: var(--primary);
+		text-align: center;
+	}
+
+	&__input {
+		min-height: 60px;
+
+		@include hg {
+			min-height: 50px;
+		}
+	}
+
+	&__rememberme,
+	&__policy {
+		align-items: flex-start;
+
+		.square-checkbox__switcher {
+			background: var(--bg-secondary);
+			border-color: #d9d9d9;
+		}
+
+		.square-checkbox__input:checked + .square-checkbox__switcher {
+			background: var(--bg-secondary);
+			border-color: #d9d9d9;
+
+			&::before {
+				border-color: var(--primary);
+			}
+		}
+	}
+
+	&__submit {
+		width: 100%;
+		min-height: 50px;
+		margin-top: 10px;
+		background: var(--primary);
+	}
+
+	&__lost {
+		align-self: center;
+		margin-top: 10px;
+		font-size: 16px;
+		@include ui-link(var(--fc-gray));
+	}
 }

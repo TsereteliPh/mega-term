@@ -26,14 +26,21 @@
 		) ); ?>
 
 		<div class="header__user">
-			<a href="<?php //TODO: login ?>" class="header__user-link header__user-link--login">
-				<svg width="16" height="15"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-login"></use></svg>
-				Вход
-			</a>
+			<?php if ( is_user_logged_in() ) : ?>
+				<a href="<?php echo wc_get_page_permalink( 'myaccount' ); ?>" class="header__user-link header__user-link--login">
+					<svg width="16" height="15"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-login"></use></svg>
+					Профиль
+				</a>
+			<?php else : ?>
+				<button class="header__user-link header__user-link--login" type="button" data-fancybox data-src="#login">
+					<svg width="16" height="15"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-login"></use></svg>
+					Вход
+				</button>
 
-			<a href="<?php //TODO: register ?>" class="header__user-link header__user-link--register">
-				Регистрация
-			</a>
+				<button class="header__user-link header__user-link--registration" type="button" data-fancybox data-src="#registration">
+					Регистрация
+				</button>
+			<?php endif; ?>
 		</div>
 
 		<button class="btn btn--thic header__catalog-btn" type="button">

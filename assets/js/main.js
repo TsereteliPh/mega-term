@@ -134,6 +134,11 @@ function sendForm() {
 	document.querySelectorAll('form[name]').forEach(function (form) {
 		if (form.name === 'checkout' ) return;
 
+		if (form.name === 'login' || form.name === 'registration') {
+			sendLoginForm(form);
+			return;
+		}
+
 		form.addEventListener('submit', function (e) {
 			e.preventDefault();
 			const form = this;
@@ -175,6 +180,42 @@ function sendForm() {
 				})
 				.catch(error => console.error('Error:', error));
 		});
+	});
+}
+
+function sendLoginForm(form) {
+	form.addEventListener('submit', function (e) {
+		e.preventDefault();
+		const form = this;
+		form.classList.remove('invalid');
+		form.classList.add('loader');
+		let formData = new FormData(form);
+		const formName = form.name;
+		const formError = form.querySelector('.js-error');
+
+		if (formName) {
+			formData.append('action', formName);
+			formData.append('form_name', formName);
+		} else {
+			return;
+		}
+
+		const response = fetch(adem_ajax.url, {
+			method: 'POST',
+			body: formData,
+		})
+			.then(response => response.json())
+			.then(data => {
+				form.classList.remove('loader');
+				if (data.status == 'success') {
+					Fancybox.close(true);
+					location.reload();
+				} else {
+					form.classList.add('invalid');
+					formError.textContent = data.message ? data.message : 'Что-то пошло не так. Пожалуйста, повторите попытку позже';
+				}
+			})
+			.catch(error => console.error('Error:', error));
 	});
 }
 

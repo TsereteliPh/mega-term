@@ -91,8 +91,11 @@
 		display: flex;
 		gap: 5px;
 		align-items: center;
+		padding: 0;
 		line-height: 1;
 		text-decoration: none;
+		background: none;
+		border: none;
 
 		@include mouse {
 
