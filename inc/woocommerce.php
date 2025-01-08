@@ -171,6 +171,15 @@ function adem_form_field_args( $args, $key, $value = null ) {
 	return $args;
 }
 
+// Disable account links
+add_filter( 'woocommerce_account_menu_items', 'adem_account_menu_items', 25 );
+function adem_account_menu_items( $menu_links ) {
+	unset( $menu_links[ 'downloads' ] );
+	unset( $menu_links[ 'payment-methods' ] );
+
+	return $menu_links;
+}
+
 // ---------------------------------------------------------------- Functions
 
 // Product quantity in cart by ID
