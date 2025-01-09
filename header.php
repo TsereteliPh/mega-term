@@ -95,11 +95,13 @@
 		</div>
 
 		<div class="header__buttons">
-			<a href="<?php //TODO: ?>" class="btn btn--square header__comparison" aria-label="Открыть сравнение">
-				<svg width="25" height="21"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-comparison"></use></svg>
+			<?php if ( false ) : //! temporarily remove comparison ?>
+				<a href="<?php  ?>" class="btn btn--square header__comparison" aria-label="Открыть сравнение">
+					<svg width="25" height="21"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-comparison"></use></svg>
 
-				<span class="btn__counter header__counter active">12</span>
-			</a>
+					<span class="btn__counter header__counter active">12</span>
+				</a>
+			<?php endif; ?>
 
 			<?php if ( is_user_logged_in() ) : ?>
 				<a href="<?php echo get_page_link( 484 ); ?>" class="btn btn--square header__fav" aria-label="Открыть избранное">
