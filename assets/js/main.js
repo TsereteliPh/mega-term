@@ -130,95 +130,6 @@ function setNameMask() {
 	});
 }
 
-function sendForm() {
-	document.querySelectorAll('form[name]').forEach(function (form) {
-		if (form.name === 'checkout' ) return;
-
-		if (form.name === 'login' || form.name === 'registration') {
-			sendLoginForm(form);
-			return;
-		}
-
-		form.addEventListener('submit', function (e) {
-			e.preventDefault();
-			const form = this;
-			form.classList.add('loader');
-			let formData = new FormData(form);
-			const formName = form.name;
-			const fileInput = form.querySelector('input[type=file]');
-
-			formData.append('action', 'send_mail');
-
-			if (formName) {
-				formData.append('form_name', formName);
-			} else {
-				return;
-			}
-
-			if (fileInput) {
-				Array.from(fileInput.files).forEach((file, key) => {
-					formData.append(key.toString(), file);
-				});
-			}
-
-			const response = fetch(adem_ajax.url, {
-				method: 'POST',
-				body: formData,
-			})
-				.then(response => {
-					form.classList.remove('loader');
-					Fancybox.close(true);
-					form.reset();
-					setTimeout(function () {
-						Fancybox.show([
-							{
-								src: response.ok ? '#success' : '#failure',
-								type: 'inline',
-							},
-						]);
-					}, 100);
-				})
-				.catch(error => console.error('Error:', error));
-		});
-	});
-}
-
-function sendLoginForm(form) {
-	form.addEventListener('submit', function (e) {
-		e.preventDefault();
-		const form = this;
-		form.classList.remove('invalid');
-		form.classList.add('loader');
-		let formData = new FormData(form);
-		const formName = form.name;
-		const formError = form.querySelector('.js-error');
-
-		if (formName) {
-			formData.append('action', formName);
-			formData.append('form_name', formName);
-		} else {
-			return;
-		}
-
-		const response = fetch(adem_ajax.url, {
-			method: 'POST',
-			body: formData,
-		})
-			.then(response => response.json())
-			.then(data => {
-				form.classList.remove('loader');
-				if (data.status == 'success') {
-					Fancybox.close(true);
-					location.reload();
-				} else {
-					form.classList.add('invalid');
-					formError.textContent = data.message ? data.message : 'Что-то пошло не так. Пожалуйста, повторите попытку позже';
-				}
-			})
-			.catch(error => console.error('Error:', error));
-	});
-}
-
 function setFileName() {
 	const fileInputs = document.querySelectorAll('input[type=file]');
 	if (fileInputs) {
@@ -317,6 +228,152 @@ function changeInputQuantity(form, dispatch = false) {
 }
 
 // ---------------------------------------------------------------- Ajax
+
+function favorites() {
+	const favBtns = document.querySelectorAll('.btn-fav');
+	const favCounter = document.querySelector('.header__fav-counter');
+
+	if (!favBtns) return;
+
+	favBtns.forEach(btn => {
+		btn.addEventListener('click', function () {
+			this.setAttribute('disabled', true);
+			this.classList.add('btn-fav--loading');
+			const options = {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+				},
+				body: new URLSearchParams({
+					action: this.classList.contains('active') ? 'remove_from_favorite' : 'add_to_favorite',
+					id: this.dataset.id,
+					user: this.dataset.user
+				})
+			};
+
+			const response = fetch(adem_ajax.url, options)
+				.then(response => response.json())
+				.then(data => {
+					this.classList.remove('btn-fav--loading');
+					this.removeAttribute('disabled');
+
+					if (data.status === 'success') {
+						favCounter.textContent = data.count;
+						data.count > 0
+							? favCounter.classList.add('active')
+							: favCounter.classList.remove('active');
+						favBtns.forEach(btn => {
+							if (btn.dataset.id === this.dataset.id) {
+								console.log(this.classList);
+								this.classList.contains('active')
+									? btn.classList.remove('active')
+									: btn.classList.add('active');
+							}
+						});
+					} else {
+						setTimeout(function () {
+							Fancybox.show([
+								{
+									src: '#failure',
+									type: 'inline',
+								},
+							]);
+						}, 100);
+					}
+				})
+				.catch(error => console.error('Error: ', error));
+		})
+	});
+}
+
+function sendForm() {
+	document.querySelectorAll('form[name]').forEach(function (form) {
+		if (form.name === 'checkout' ) return;
+
+		if (form.name === 'login' || form.name === 'registration') {
+			sendLoginForm(form);
+			return;
+		}
+
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+			const form = this;
+			form.classList.add('loader');
+			let formData = new FormData(form);
+			const formName = form.name;
+			const fileInput = form.querySelector('input[type=file]');
+
+			formData.append('action', 'send_mail');
+
+			if (formName) {
+				formData.append('form_name', formName);
+			} else {
+				return;
+			}
+
+			if (fileInput) {
+				Array.from(fileInput.files).forEach((file, key) => {
+					formData.append(key.toString(), file);
+				});
+			}
+
+			const response = fetch(adem_ajax.url, {
+				method: 'POST',
+				body: formData,
+			})
+				.then(response => {
+					form.classList.remove('loader');
+					Fancybox.close(true);
+					form.reset();
+					setTimeout(function () {
+						Fancybox.show([
+							{
+								src: response.ok ? '#success' : '#failure',
+								type: 'inline',
+							},
+						]);
+					}, 100);
+				})
+				.catch(error => console.error('Error:', error));
+		});
+	});
+}
+
+function sendLoginForm(form) {
+	form.addEventListener('submit', function (e) {
+		e.preventDefault();
+		const form = this;
+		form.classList.remove('invalid');
+		form.classList.add('loader');
+		let formData = new FormData(form);
+		const formName = form.name;
+		const formError = form.querySelector('.js-error');
+
+		if (formName) {
+			formData.append('action', formName);
+			formData.append('form_name', formName);
+		} else {
+			return;
+		}
+
+		const response = fetch(adem_ajax.url, {
+			method: 'POST',
+			body: formData,
+		})
+			.then(response => response.json())
+			.then(data => {
+				form.classList.remove('loader');
+				if (data.status == 'success') {
+					Fancybox.close(true);
+					location.reload();
+				} else {
+					form.classList.add('invalid');
+					formError.textContent = data.message ? data.message : 'Что-то пошло не так. Пожалуйста, повторите попытку позже';
+				}
+			})
+			.catch(error => console.error('Error:', error));
+	});
+}
 
 function showMorePosts() {
 	const show_more_btns = document.querySelectorAll('.js-show-more');
@@ -719,11 +776,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	setHeaderScrollClass();
 	setFileName();
 	setNameMask();
-	sendForm();
 	setTelMask();
 	tabs();
 
 	// Ajax
+	favorites();
+	sendForm();
 	showMorePosts();
 
 	// Swiper

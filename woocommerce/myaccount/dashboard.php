@@ -43,10 +43,16 @@
 		<?php endif; ?>
 	</a>
 
-	<a href="<?php //TODO: fav ?>" class="account__panel-link account__panel-link--fav">
+	<a href="<?php echo get_page_link( 484 ); ?>" class="account__panel-link account__panel-link--fav">
 		<div class="account__panel-count">
 			Избранное
-			<span>3</span>
+
+			<?php
+				$count_favorites = adem_count_all_favorites();
+				if ( $count_favorites > 0 ) :
+			?>
+				<span><?php echo $count_favorites; ?></span>
+			<?php endif; ?>
 		</div>
 	</a>
 

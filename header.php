@@ -101,11 +101,15 @@
 				<span class="btn__counter header__counter active">12</span>
 			</a>
 
-			<a href="<?php //TODO: ?>" class="btn btn--square header__fav" aria-label="Открыть избранное">
-				<svg width="26" height="23"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-fav"></use></svg>
+			<?php if ( is_user_logged_in() ) : ?>
+				<a href="<?php echo get_page_link( 484 ); ?>" class="btn btn--square header__fav" aria-label="Открыть избранное">
+					<svg width="26" height="23"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-fav"></use></svg>
 
-				<span class="btn__counter header__counter">0</span>
-			</a>
+					<?php $favorites_count = adem_count_all_favorites(); ?>
+
+					<span class="btn__counter header__counter header__fav-counter<?php echo ( $favorites_count > 0 ) ? ' active' : ''; ?>"><?php echo $favorites_count; ?></span>
+				</a>
+			<?php endif; ?>
 
 			<a href="<?php echo wc_get_cart_url(); ?>" class="btn btn--square header__cart" aria-label="Открыть избранное">
 				<svg width="23" height="23"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-cart"></use></svg>
@@ -173,3 +177,4 @@
 <?php endif ?>
 
 <main class="main">
+	<?php if ( is_page( 484 ) ) get_template_part( 'layouts/partials/favorites' ); ?>

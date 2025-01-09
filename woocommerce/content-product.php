@@ -58,8 +58,14 @@ $sku = $product->get_sku();
 		<?php endif; ?>
 	</div>
 
-	<?php if ( ! is_user_logged_in() ) : //! temporarily ?>
-		<button class="btn-fav product-card__fav" type="button" <?php //TODO: fav btn ?>>
+	<?php if ( is_user_logged_in() ) : ?>
+		<button
+			class="btn-fav product-card__fav<?php echo adem_check_favorite( $product->get_id() ) ? ' active' : ''; ?>"
+			type="button"
+			aria-label="Добавить в избранное"
+			data-id="<?php echo $product->get_id(); ?>"
+			data-user="<?php echo get_current_user_id(); ?>"
+		>
 			<svg width="20" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-fav"></use></svg>
 		</button>
 	<?php endif; ?>

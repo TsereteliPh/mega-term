@@ -232,10 +232,12 @@ function my_acfe_fix_form_fields(){
 //! end
 
 require 'inc/acf.php';
+require 'inc/add-to-favorite.php';
 require 'inc/load-more.php';
 require 'inc/login.php';
 require 'inc/mail.php';
 require 'inc/registration.php';
+require 'inc/remove-from-favorite.php';
 require 'inc/svg.php';
 require 'inc/tiny-mce.php';
 require 'inc/traffic.php';

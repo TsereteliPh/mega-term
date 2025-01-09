@@ -47,9 +47,27 @@
 			}
 		}
 
+		&--fav {
+
+			&.active {
+
+				.product__header-button-notinfav {
+					display: none;
+				}
+
+				.product__header-button-infav {
+					display: block;
+				}
+			}
+		}
+
 		svg {
 			color: var(--primary);
 		}
+	}
+
+	&__header-button-infav {
+		display: none;
 	}
 
 	&__header-availability {

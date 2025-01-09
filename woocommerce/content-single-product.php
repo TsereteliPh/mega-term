@@ -44,11 +44,19 @@ if ( post_password_required() ) {
 
 		<div class="product__header">
 			<div class="product__header-buttons">
-				<button class="product__header-button product__header-button--fav" type="button" aria-label="Добавить в избранное">
-					<?php //TODO: fav ?>
-					Добавить в избранное
-					<svg width="20" height="17"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-fav"></use></svg>
-				</button>
+				<?php if ( is_user_logged_in() ) : ?>
+					<button
+						class="btn-fav product__header-button product__header-button--fav<?php echo adem_check_favorite( $product->get_id() ) ? ' active' : ''; ?>"
+						type="button"
+						aria-label="Добавить в избранное"
+						data-id="<?php echo $product->get_id(); ?>"
+						data-user="<?php echo get_current_user_id(); ?>"
+					>
+						<span class="product__header-button-notinfav">Добавить в избранное</span>
+						<span class="product__header-button-infav">В избранном</span>
+						<svg width="20" height="17"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-fav"></use></svg>
+					</button>
+				<?php endif; ?>
 			</div>
 
 			<?php

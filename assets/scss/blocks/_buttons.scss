@@ -139,3 +139,53 @@
 		width: 30px;
 	}
 }
+
+.btn-fav {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	color: var(--fc-dark);
+	background: none;
+	border: none;
+	animation: fav-show 0.5s ease-out;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-tap-highlight-color: transparent;
+
+	@include mouse {
+
+		&:hover {
+
+			svg {
+				color: var(--primary);
+			}
+		}
+	}
+
+	&--loading {
+
+		svg {
+			animation: heart-beat 1s ease infinite;
+		}
+	}
+
+	&.active {
+
+		&--loading {
+			animation: heart-pulse 0.4s ease-out;
+		}
+
+		svg {
+			color: var(--primary);
+			fill: var(--primary);
+		}
+	}
+
+	svg {
+		flex-shrink: 0;
+		color: var(--fc-dark);
+		transition: var(--transition);
+		fill: none;
+	}
+}

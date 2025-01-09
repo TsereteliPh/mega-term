@@ -343,6 +343,56 @@ function adem_layered_nav_term_html( $term_html, $term, $link, $count ) {
     return $term_html;
 }
 
+//Favorites
+add_action( 'template_redirect', 'adem_favorites_redirect' );
+function adem_favorites_redirect() {
+	if ( is_page( 'favorites' ) && ! is_user_logged_in() ) {
+		wp_redirect( home_url() );
+		exit();
+	}
+}
+
+function adem_count_all_favorites() {
+	if ( ! is_user_logged_in() ) return;
+
+	$user_favorites = get_user_meta( get_current_user_id(), 'favorites', false );
+	if ( ! $user_favorites ) return;
+
+	return count( json_decode( $user_favorites[0], true ) );
+}
+
+function adem_check_favorite( $product_id ) {
+	if ( ! is_user_logged_in() ) return;
+
+	$user_favorites = get_user_meta( get_current_user_id(), 'favorites', false );
+	if ( ! $user_favorites ) return;
+
+	$user_favorites = json_decode( $user_favorites[0], true );
+	$user_favorites = array_unique( $user_favorites );
+	foreach ( $user_favorites as $item ) {
+		if ( $product_id == $item ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+add_filter( 'body_class', 'adem_add_woocommerce_classes_to_body' );
+function adem_add_woocommerce_classes_to_body( $classes ) {
+    if ( is_page( 484 ) ) {
+        $woocommerce_classes = array(
+            'woocommerce',
+            'woocommerce-page',
+            'woocommerce-js',
+        );
+
+        $classes = array_merge( $classes, $woocommerce_classes );
+    }
+
+    return $classes;
+}
+
 // Cookie
 if ( ! isset( $_COOKIE['woocommerce_catalog_flex'] ) ) {
 	setcookie( 'woocommerce_catalog_flex', 0, time() + 3600 * 24 * 30, '/' );
