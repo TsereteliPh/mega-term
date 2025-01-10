@@ -264,8 +264,7 @@ function favorites() {
 							: favCounter.classList.remove('active');
 						favBtns.forEach(btn => {
 							if (btn.dataset.id === this.dataset.id) {
-								console.log(this.classList);
-								this.classList.contains('active')
+								btn.classList.contains('active')
 									? btn.classList.remove('active')
 									: btn.classList.add('active');
 							}
