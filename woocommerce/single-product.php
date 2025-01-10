@@ -19,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+global $product;
+
 get_header( 'shop' ); ?>
 
 <?php
@@ -57,6 +59,30 @@ get_header( 'shop' ); ?>
 ?>
 
 <?php
+$upsells = $product->get_upsell_ids();
+if ( $upsells ) {
+	$upsells = array_map( function( $id ) {
+        $product = wc_get_product( $id );
+        if ( $product && $product->is_type( 'variation' ) ) {
+            return $product->get_parent_id();
+        }
+        return $id;
+    }, $upsells );
+	$upsells = array_unique( $upsells );
+
+	get_template_part( '/layouts/blocks/product-slider/template', null, array(
+		'title' => array(
+			'type' => 'h2',
+			'text' => 'СОПУТСТВУЮЩИЕ ТОВАРЫ',
+			'link' => array(
+				'url' => wc_get_page_permalink( 'shop' ),
+				'title' => 'Смотреть все'
+			)
+		),
+		'slides' => $upsells
+	) );
+}
+
 get_template_part( '/layouts/blocks/recently-viewed/template', null, array(
 	'title' => array(
 		'type' => 'h2',
