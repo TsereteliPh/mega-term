@@ -618,17 +618,11 @@ function initProductSlider() {
 				prevEl: slider.querySelector('.controls__prev'),
 			},
 			breakpoints: {
-				1440: {
-					slidesPerView: 4,
-				},
 				1280: {
 					slidesPerView: 4,
 				},
 				992: {
 					slidesPerView: 3,
-				},
-				769: {
-					// slidesPerView: 3,
 				}
 			}
 		});

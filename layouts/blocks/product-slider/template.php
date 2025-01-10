@@ -1,13 +1,17 @@
 <section class="product-slider">
 	<div class="container">
-		<?php  get_template_part( '/layouts/partials/title', null, array(
-			'class' => 'product-slider__title',
-			'title' => get_sub_field( 'title' )
-		) ); ?>
+		<?php
+			$title = ! empty( $args['title'] ) ? $args['title'] : get_sub_field( 'title' );
+
+			get_template_part( '/layouts/partials/title', null, array(
+				'class' => 'product-slider__title',
+				'title' => $title
+			) );
+		?>
 	</div>
 
 	<?php
-		$slides = get_sub_field( 'slider' );
+		$slides = ! empty( $args['slides'] ) ? $args['slides'] : get_sub_field( 'slider' );
 		if ( $slides ) :
 			?>
 
