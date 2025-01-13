@@ -48,6 +48,32 @@
 	</form>
 </div>
 
+<div class="modal modal--question" id="question">
+	<div class="modal__info">
+		<div class="modal__title">Задать вопрос</div>
+	</div>
+
+	<form method="POST" class="modal__form" name="Вопрос">
+		<input type="text" class="input modal__input" name="client_name" placeholder="ФИО" required>
+
+		<input type="email" class="input modal__input" name="client_email" placeholder="Email" required>
+
+		<textarea class="input modal__textarea" name="client_message" placeholder="Ваш вопрос" required></textarea>
+
+		<label class="square-checkbox modal__policy">
+			<input type="checkbox" class="hidden square-checkbox__input" checked required>
+
+			<span class="square-checkbox__switcher"></span>
+
+			<span class="square-checkbox__text">Отправляя форму, вы даете согласие на обработку персональных данных, указанных вами в заявке, в соответствии с требованиями Федерального закона № 152-ФЗ от 27.07.2006 “О персональных данных”.</span>
+		</label>
+
+		<button class="btn modal__submit" type="submit">Отправить вопрос</button>
+
+		<?php wp_nonce_field( 'Вопрос', 'modal-question-nonce' ); ?>
+	</form>
+</div>
+
 <?php if ( ! is_user_logged_in() ) : ?>
 	<div class="modal modal--login" id="login">
 		<div class="modal__info">

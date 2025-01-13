@@ -177,6 +177,14 @@
 		}
 	}
 
+	&__textarea {
+		min-height: 120px;
+
+		@include xs {
+			min-height: 80px;
+		}
+	}
+
 	&__rememberme,
 	&__policy {
 		align-items: flex-start;

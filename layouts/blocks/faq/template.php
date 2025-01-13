@@ -6,7 +6,7 @@
 		) ); ?>
 
 		<div class="faq__content">
-			<button class="btn btn--thin faq__button" type="button" data-fancybox data-src="<?php //TODO: modal ?>">Задать вопрос</button>
+			<button class="btn btn--thin faq__button" type="button" data-fancybox data-src="#question">Задать вопрос</button>
 
 			<?php
 				$faq = get_sub_field( 'faq' );
