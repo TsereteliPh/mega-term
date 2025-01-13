@@ -60,7 +60,7 @@
 			<svg width="20" height="21"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-search"></use></svg>
 		</button>
 
-		<div class="header__search" id="search"><?php //TODO: search ?>
+		<div class="header__search" id="search">
 			<form role="search" method="get" class="header__search-form" action="<?php bloginfo( 'url' ); ?>" id="searchform">
 				<input type="search" id="search" class="input header__search-input" value="<?php echo get_search_query(); ?>" name="s" placeholder="Поиск по сайту" data-swplive="true">
 

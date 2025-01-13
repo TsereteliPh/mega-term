@@ -191,6 +191,7 @@
 	}
 
 	&__search {
+		position: relative;
 		grid-column: span 3;
 
 		@include lg {
@@ -206,6 +207,7 @@
 			width: 100%;
 			max-width: 500px;
 			padding: 40px 10px 10px;
+			border-radius: 10px;
 		}
 
 		.carousel__button.is-close {
@@ -213,7 +215,13 @@
 			@include sm {
 				top: 0;
 				right: 0;
-				color: var(--fc-dark);
+				color: var(--primary);
+			}
+
+			svg {
+				width: 15px;
+				height: 15px;
+				filter: none;
 			}
 		}
 	}
@@ -242,6 +250,13 @@
 			border-color: var(--fc-dark);
 			outline: none;
 		}
+
+		&::-webkit-search-decoration,
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-results-button,
+		&::-webkit-search-results-decoration {
+			appearance: none;
+		}
 	}
 
 	&__search-btn {
@@ -263,6 +278,84 @@
 			background: var(--fc-dark);
 			border-radius: 10px;
 			transform: none;
+		}
+	}
+
+	&__search-result {
+		position: absolute;
+		top: 55px;
+		left: 0;
+		z-index: var(--ui-index-1);
+
+		@include sm {
+			position: relative;
+			top: auto;
+			left: auto;
+		}
+
+		.searchwp-live-search-results {
+			display: none;
+		}
+
+		.searchwp-live-search-no-min-chars {
+			display: none;
+		}
+
+		.searchwp-live-search-results-showing {
+			display: flex;
+			flex-direction: column;
+			height: fit-content;
+			min-height: 100px;
+			max-height: 200px;
+			margin-top: 10px;
+			overflow: auto;
+			background: var(--bg-secondary);
+			border: 1px solid var(--fc-dark);
+			border-radius: 10px;
+		}
+
+		.searchwp-live-search-no-results {
+			align-self: center;
+			width: fit-content;
+			height: fit-content;
+			margin: auto;
+		}
+	}
+
+	&__search-link {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		width: 100%;
+		padding: 15px 10px;
+		@include ui-link(var(--fc-dark));
+
+		@include sm {
+			padding: 10px;
+		}
+
+		&:last-child {
+			border: none;
+		}
+	}
+
+	&__search-thumb {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		width: 60px;
+		height: 25px;
+		overflow: hidden;
+
+		@include md {
+			width: 40px;
+			height: 20px;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
 		}
 	}
 

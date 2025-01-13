@@ -83,6 +83,7 @@ if ( ! function_exists( 'adem_setup' ) ) {
 			'menu_name' => 'Вопрос - ответ',
 		],
 		'public' => true,
+		'exclude_from_search' => true,
 		'show_in_menu' => true,
 		'menu_position' => 22,
 		'menu_icon' => 'dashicons-editor-help',
@@ -110,6 +111,7 @@ if ( ! function_exists( 'adem_setup' ) ) {
 			'menu_name' => 'Отзывы',
 		],
 		'public' => true,
+		'exclude_from_search' => true,
 		'show_in_menu' => true,
 		'menu_position' => 23,
 		'menu_icon' => 'dashicons-admin-comments',
@@ -230,6 +232,67 @@ function my_acfe_fix_form_fields(){
     <?php
 }
 //! end
+
+//SearchWP plugin configs
+add_filter( 'searchwp_live_search_configs', 'adem_searchwp_live_search_configs' );
+function adem_searchwp_live_search_configs( $configs ) {
+	$configs['default'] = array(
+		'engine' => 'default',
+		'input' => array(
+			'delay'     => 300,
+			'min_chars' => 1,
+		),
+		'parent_el' => '.header__search-result',
+		'results' => array(
+			'position'  => 'bottom',
+			'width'     => 'auto',
+			'offset'    => array(
+				'x' => 0,
+				'y' => 15
+			),
+		),
+		'spinner' => array(
+			'lines'     => 0,
+			'length'    => 0,
+			'width'     => 'auto',
+			'radius'    => 0,
+			'scale'     => 1,
+			'corners'   => 0,
+			'color'     => 'inherit',
+			'fadeColor' => 'transparent',
+			'speed'     => 1,
+			'rotate'    => 0,
+			'direction' => 1,
+			'className' => 'loader',
+			'top'       => '50%',
+			'left'      => '50%',
+			'position'  => 'absolute'
+		),
+	);
+
+	return $configs;
+}
+
+add_filter( 'searchwp_live_search_base_styles', '__return_false' );
+
+add_filter( 'searchwp_exclude', function( $exclude, $engine ) {
+    $excluded_post_types = ['custom_post_type1', 'custom_post_type2'];
+
+    // Получаем ID постов с определённым типом и условием (например, метаполе)
+    $query = new WP_Query( [
+        'post_type'   => $excluded_post_types,
+        'meta_key'    => 'exclude_from_search',
+        'meta_value'  => '1',
+        'fields'      => 'ids',
+        'posts_per_page' => -1,
+    ] );
+
+    if ( $query->have_posts() ) {
+        $exclude = array_merge( $exclude, $query->posts );
+    }
+
+    return $exclude;
+}, 10, 2 );
 
 require 'inc/acf.php';
 require 'inc/add-to-favorite.php';
