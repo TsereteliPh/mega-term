@@ -48,8 +48,13 @@
 				</div>
 
 				<form method="POST" class="footer__mailing-form" name="Рассылка">
-					<input type="email" class="input footer__mailing-input" name="email" placeholder="E-mail" required>
+					<input type="email" class="input footer__mailing-input" name="client_email" placeholder="E-mail" required>
+
+					<input type="text" name="page_request" class="hidden" value="<?php echo is_archive() ? get_the_archive_title() : get_the_title(); ?>">
+
                     <button type="submit" class="btn footer__mailing-submit">Подписаться</button>
+
+					<?php wp_nonce_field( 'Рассылка', 'form-mailing-nonce' ); ?>
 				</form>
 			</div>
 		</div>
