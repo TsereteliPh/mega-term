@@ -31,26 +31,32 @@
 		}
 	}
 
-	&__cities {
-		display: flex;
-		gap: 5px;
-		align-items: center;
+	//! temorarily disable
+	// &__cities {
+	// 	display: flex;
+	// 	gap: 5px;
+	// 	align-items: center;
 
-		svg {
-			color: var(--primary);
-		}
-	}
+	// 	svg {
+	// 		color: var(--primary);
+	// 	}
+	// }
 
 	&__menu {
 		display: flex;
 		flex-wrap: wrap;
-		grid-column: span 3;
+		grid-column: span 4; // edit to 3, if enable cities
 		gap: 10px;
 		align-items: center;
 		justify-content: space-between;
 		transition: var(--transition);
 
 		@include md {
+			grid-column: span 2;
+			// display: none; // none if enable cities
+		}
+
+		@include sm {
 			display: none;
 		}
 

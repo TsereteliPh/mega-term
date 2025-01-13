@@ -13,10 +13,12 @@
 
 <header class="header">
 	<div class="container header__container">
-		<div class="header__cities"><?php //TODO: cities ?>
-			<svg width="10" height="11"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-city-geo"></use></svg>
-			Москва
-		</div>
+		<?php if ( false ) : //! temporarily remove cities ?>
+			<div class="header__cities">
+				<svg width="10" height="11"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-city-geo"></use></svg>
+				Москва
+			</div>
+		<?php endif; ?>
 
 		<?php wp_nav_menu( array(
 			'theme_location' => 'menu_main',

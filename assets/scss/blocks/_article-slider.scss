@@ -57,4 +57,11 @@
 			display: flex;
 		}
 	}
+
+	&__controls {
+
+		@include sm {
+			display: none;
+		}
+	}
 }
