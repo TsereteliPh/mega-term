@@ -84,7 +84,7 @@
 				</a>
 			<?php endif; ?>
 
-			<button class="header__callback" type="button" data-fancybox data-src="<?php //TODO: callback ?>">Обратный звонок</button>
+			<button class="header__callback" type="button" data-fancybox data-src="#callback">Обратный звонок</button>
 
 			<?php if( $email ) : ?>
 				<a href="mailto:<?php echo $email; ?>" class="header__email">

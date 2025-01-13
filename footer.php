@@ -97,7 +97,7 @@
 					<div class="footer__content-phones">
 						<a href="tel:<?php echo preg_replace( '/[^0-9,+]/', '', $tel ); ?>" class="footer__content-tel"><?php echo $tel; ?></a>
 
-						<button class="footer__content-callback" type="button" data-fancybox data-src="<?php //TODO: callback ?>">Обратный звонок</button>
+						<button class="footer__content-callback" type="button" data-fancybox data-src="#callback">Обратный звонок</button>
 					</div>
 				<?php endif; ?>
 

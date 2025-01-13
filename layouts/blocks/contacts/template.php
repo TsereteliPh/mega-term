@@ -25,7 +25,7 @@
 							<a href="tel:<?php echo preg_replace( '/[^0-9,+]/', '', $office['tel'] ); ?>" class="contacts__item-tel"><?php echo $office['tel']; ?></a>
 						<?php endif; ?>
 
-						<button class="contacts__item-callback" type="button" data-fancybox data-src="<?php //TODO: callback ?>">Обратный звонок</button>
+						<button class="contacts__item-callback" type="button" data-fancybox data-src="#callback">Обратный звонок</button>
 
 						<?php if ( $office['email'] ) : ?>
 							<a href="mailto:<?php echo $office['email']; ?>" class="contacts__item-email">

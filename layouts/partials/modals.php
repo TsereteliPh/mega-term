@@ -24,6 +24,30 @@
 	</div>
 </div>
 
+<div class="modal modal--callback" id="callback">
+	<div class="modal__info">
+		<div class="modal__title">Заказать обратный звонок</div>
+	</div>
+
+	<form method="POST" class="modal__form" name="Звонок">
+		<input type="text" class="input modal__input" name="client_name" placeholder="ФИО" required>
+
+		<input type="tel" class="input modal__input" name="client_tel" placeholder="+7 ( ___ ) - ___ - __ - __" required>
+
+		<label class="square-checkbox modal__policy">
+			<input type="checkbox" class="hidden square-checkbox__input" checked required>
+
+			<span class="square-checkbox__switcher"></span>
+
+			<span class="square-checkbox__text">Отправляя форму, вы даете согласие на обработку персональных данных, указанных вами в заявке, в соответствии с требованиями Федерального закона № 152-ФЗ от 27.07.2006 “О персональных данных”.</span>
+		</label>
+
+		<button class="btn modal__submit" type="submit">Отправить запрос</button>
+
+		<?php wp_nonce_field( 'Звонок', 'modal-callback-nonce' ); ?>
+	</form>
+</div>
+
 <?php if ( ! is_user_logged_in() ) : ?>
 	<div class="modal modal--login" id="login">
 		<div class="modal__info">
