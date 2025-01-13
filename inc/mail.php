@@ -120,7 +120,9 @@ add_action( "wp_ajax_send_mail", "send_mail" );
 add_action( "wp_ajax_nopriv_send_mail", "send_mail" );
 function send_mail() {
 	if ( empty ( $_POST['form_name'] ) || empty( $_POST['page_request'] ) ) throw new ErrorException;
-	if ( $_POST['form_name'] == 'Вопрос' && ! wp_verify_nonce( $_POST['form-question-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
+	if ( $_POST['form_name'] == 'Звонок' && ! wp_verify_nonce( $_POST['modal-callback-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
+	if ( $_POST['form_name'] == 'Вопрос' && ! wp_verify_nonce( $_POST['modal-question-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
+	if ( $_POST['form_name'] == 'Рассылка' && ! wp_verify_nonce( $_POST['form-mailing-nonce'], $_POST['form_name'] ) ) throw new ErrorException;
 
 	$form_name = $_POST['form_name'];
 	$mail = '';

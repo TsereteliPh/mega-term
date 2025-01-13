@@ -42,6 +42,8 @@
 			<span class="square-checkbox__text">Отправляя форму, вы даете согласие на обработку персональных данных, указанных вами в заявке, в соответствии с требованиями Федерального закона № 152-ФЗ от 27.07.2006 “О персональных данных”.</span>
 		</label>
 
+		<input type="text" name="page_request" class="hidden" value="<?php echo $page_title; ?>">
+
 		<button class="btn modal__submit" type="submit">Отправить запрос</button>
 
 		<?php wp_nonce_field( 'Звонок', 'modal-callback-nonce' ); ?>
@@ -67,6 +69,8 @@
 
 			<span class="square-checkbox__text">Отправляя форму, вы даете согласие на обработку персональных данных, указанных вами в заявке, в соответствии с требованиями Федерального закона № 152-ФЗ от 27.07.2006 “О персональных данных”.</span>
 		</label>
+
+		<input type="text" name="page_request" class="hidden" value="<?php echo $page_title; ?>">
 
 		<button class="btn modal__submit" type="submit">Отправить вопрос</button>
 
