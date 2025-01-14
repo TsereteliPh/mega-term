@@ -31,33 +31,77 @@
 		}
 	}
 
-	//! temorarily disable
-	// &__cities {
-	// 	display: flex;
-	// 	gap: 5px;
-	// 	align-items: center;
+	&__logo {
+		display: flex;
+		grid-column: span 2;
+		gap: 10px;
+		align-items: center;
 
-	// 	svg {
-	// 		color: var(--primary);
-	// 	}
-	// }
+		@include lg {
+			grid-column: auto;
+		}
+	}
+
+	&__logo-link {
+		transition: var(--transition);
+
+		@include mouse {
+
+			&:hover {
+				transform: scale(1.02);
+			}
+		}
+
+		svg {
+
+			@include lg {
+				width: 80px;
+				height: auto;
+			}
+		}
+	}
+
+	&__logo-text {
+		max-width: 250px;
+		font-size: 10px;
+		font-family: var(--font-secondary);
+		line-height: 1.3;
+		text-transform: uppercase;
+
+		@include lg {
+			display: none;
+		}
+	}
 
 	&__menu {
 		display: flex;
 		flex-wrap: wrap;
-		grid-column: span 4; // edit to 3, if enable cities
+		grid-column: span 3;
 		gap: 10px;
 		align-items: center;
 		justify-content: space-between;
 		transition: var(--transition);
 
 		@include md {
-			grid-column: span 2;
-			// display: none; // none if enable cities
+			display: none;
+			grid-row: 3/4;
+			grid-column: 1 / -1;
+			margin-top: -20px;
 		}
 
 		@include sm {
-			display: none;
+			margin-top: 0;
+		}
+
+		@include xs {
+			flex-direction: column;
+		}
+
+		&.active {
+
+			@include md {
+				display: flex;
+			}
 		}
 
 		.menu-item {
@@ -91,6 +135,10 @@
 		gap: 25px;
 		align-items: center;
 		justify-content: flex-end;
+
+		@include md {
+			grid-column: span 2;
+		}
 	}
 
 	&__user-link {
@@ -424,11 +472,14 @@
 	}
 
 	&__buttons {
-
 		display: flex;
 		gap: 5px;
 		align-items: center;
 		justify-content: flex-end;
+
+		@include sm {
+			grid-column: span 2;
+		}
 	}
 
 	&__fav {

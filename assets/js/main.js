@@ -634,31 +634,14 @@ function initProductSlider() {
 function header() {
 	const header = document.querySelector('.header');
 
-	if (!header) return;
+	if (!header || window.innerWidth > 991) return;
 
 	const headerBurger = header.querySelector('.header__burger');
-	const headerDrop = header.querySelector('.header__drop');
-
-	const dropOpener = () => {
-		header.classList.add('active');
-		headerBurger.classList.add('active');
-		headerDrop.style.maxHeight = headerDrop.scrollHeight + 'px';
-		document.body.style.overflow = 'hidden';
-	}
-
-	const dropCloser = () => {
-		header.classList.remove('active');
-		headerBurger.classList.remove('active');
-		headerDrop.style.maxHeight = 0;
-		document.body.style.overflow = 'visible';
-	}
+	const headerMenu = header.querySelector('.header__menu');
 
 	headerBurger.addEventListener('click', function() {
-		if (this.classList.contains('active')) {
-			dropCloser();
-		} else {
-			dropOpener();
-		}
+		this.classList.toggle('active');
+        headerMenu.classList.toggle('active');
 	})
 }
 

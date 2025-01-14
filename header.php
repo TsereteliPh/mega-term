@@ -13,12 +13,22 @@
 
 <header class="header">
 	<div class="container header__container">
-		<?php if ( false ) : //! temporarily remove cities ?>
-			<div class="header__cities">
-				<svg width="10" height="11"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-city-geo"></use></svg>
-				Москва
-			</div>
-		<?php endif; ?>
+		<div class="header__logo">
+			<a href="<?php echo bloginfo( 'url' ); ?>" class="header__logo-link">
+				<svg width="100" height="48"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-logo"></use></svg>
+			</a>
+
+			<?php
+				$slogan = get_field( 'slogan', 'options' );
+				if ( $slogan ) :
+					?>
+
+					<div class="header__logo-text"><?php echo $slogan; ?></div>
+
+					<?php
+				endif;
+			?>
+		</div>
 
 		<?php wp_nav_menu( array(
 			'theme_location' => 'menu_main',
@@ -58,10 +68,6 @@
 			</div>
 		</button>
 
-		<button class="btn btn--square header__search-modal" aria-label="Открыть поиск" data-src="#search" data-fancybox>
-			<svg width="20" height="21"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-search"></use></svg>
-		</button>
-
 		<div class="header__search" id="search">
 			<form role="search" method="get" class="header__search-form" action="<?php bloginfo( 'url' ); ?>" id="searchform">
 				<input type="search" id="search" class="input header__search-input" value="<?php echo get_search_query(); ?>" name="s" placeholder="Поиск по сайту" data-swplive="true">
@@ -97,6 +103,10 @@
 		</div>
 
 		<div class="header__buttons">
+			<button class="btn btn--square header__search-modal" aria-label="Открыть поиск" data-src="#search" data-fancybox>
+				<svg width="20" height="21"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-search"></use></svg>
+			</button>
+
 			<?php if ( false ) : //! temporarily remove comparison ?>
 				<a href="<?php  ?>" class="btn btn--square header__comparison" aria-label="Открыть сравнение">
 					<svg width="25" height="21"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-comparison"></use></svg>
