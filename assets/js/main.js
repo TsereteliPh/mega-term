@@ -758,6 +758,36 @@ function orderbyFormButtonsListener() {
 	});
 }
 
+function previousElementSiblingContentCopy() {
+	const copyButtons = document.querySelectorAll('.js-copy');
+
+	if (!copyButtons) return;
+
+	copyButtons.forEach(button => {
+		button.addEventListener('click', function() {
+			let input = this.previousElementSibling;
+
+            navigator.clipboard.writeText(input.textContent)
+				.then(() => {
+					Fancybox.show([
+						{
+							src: '#copy',
+							type: 'inline',
+						},
+					]);
+				})
+				.catch(e => {
+					Fancybox.show([
+						{
+							src: '#failure',
+							type: 'inline',
+						},
+					]);
+				});
+		})
+	});
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	accordion();
 	changeInputQuantity('.product__form');
@@ -766,6 +796,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	headerSmallCatsHandler();
 	mainTextHeightHandler();
 	orderbyFormButtonsListener();
+	previousElementSiblingContentCopy();
 	setHeaderScrollClass();
 	setFileName();
 	setNameMask();

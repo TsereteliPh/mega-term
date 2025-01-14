@@ -24,6 +24,14 @@
 	</div>
 </div>
 
+<div class="modal modal--copy" id="copy">
+	<div class="modal__info">
+		<div class="modal__title">Успешно!</div>
+
+		<div class="modal__text">Текст скопирован в буфер обмена.</div>
+	</div>
+</div>
+
 <div class="modal modal--callback" id="callback">
 	<div class="modal__info">
 		<div class="modal__title">Заказать обратный звонок</div>
