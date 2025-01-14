@@ -1,0 +1,119 @@
+.coupon-banner {
+	--coupon-banner-color: var(--tertiary);
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px 30%;
+	width: 100%;
+	height: fit-content;
+	min-height: 350px;
+	padding: 80px 40px 40px;
+	color: var(--fc-light);
+	background: var(--coupon-banner-color) radial-gradient(circle, rgba(#fff, 0.4) 0%, var(--coupon-banner-color) 40%);
+	border-radius: 10px;
+
+	@include lg {
+		gap: 10px 35%;
+	}
+
+	@include sm {
+		grid-template-columns: 1fr;
+		gap: 15px;
+		min-height: auto;
+		padding: 40px 20px;
+		background: var(--coupon-banner-color);
+	}
+
+	@include xs {
+		padding: 20px 15px;
+	}
+
+	&::before {
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 35%;
+		height: auto;
+		max-height: 335px;
+		aspect-ratio: 730/850;
+		background: url(assets/images/coupon-banner-img.png) no-repeat 50% / contain;
+		transform: translateX(-50%);
+		content: "";
+
+		@include sm {
+			display: none;
+		}
+	}
+
+	&__title,
+	&__text,
+	&__code,
+	&__button,
+	&__disclaimer {
+		position: relative;
+	}
+
+	&__title {
+		font-size: 20px;
+		font-family: var(--font-secondary);
+		line-height: 1.3;
+		text-transform: uppercase;
+
+		@include lg {
+			font-size: 18px;
+		}
+
+		@include xs {
+			font-size: 16px;
+		}
+	}
+
+	&__text {
+		grid-row: 2/3;
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 1.3;
+
+		@include lg {
+			font-size: 16px;
+		}
+
+		@include xs {
+			font-weight: 500;
+			font-size: 14px;
+		}
+	}
+
+	&__code {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+
+		@include sm {
+			gap: 5px;
+		}
+
+		span {
+			font-weight: 700;
+			font-size: 30px;
+			font-family: var(--font-secondary);
+			text-transform: uppercase;
+			word-break: break-all;
+
+			@include md {
+				font-size: 25px;
+			}
+		}
+	}
+
+	&__button {
+		width: 100%;
+		max-width: 350px;
+		text-align: center;
+		background: color-mix(in srgb, var(--coupon-banner-color) 60%, #fff 40%);
+	}
+
+	&__disclaimer {
+		color: #d9d9d9;
+	}
+}

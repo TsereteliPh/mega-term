@@ -1,0 +1,14 @@
+.small-banner {
+	display: flex;
+	align-items: flex-end;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 300/350;
+	padding: 40px 20px;
+	background: var(--primary) no-repeat 50% / cover;
+	border-radius: 10px;
+
+	&__link {
+		width: fit-content;
+	}
+}

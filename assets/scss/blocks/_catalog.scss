@@ -163,6 +163,10 @@
 		}
 	}
 
+	&__filters-banner {
+		order: 1;
+	}
+
 	&__products {
 		display: flex;
 		flex-direction: column;
@@ -322,6 +326,46 @@
 
 		@include sm {
 			max-width: 100%;
+		}
+
+		&--banner {
+			grid-column: 1 / -1;
+
+			@include lg {
+				flex: 1 1 100%;
+				max-width: none;
+			}
+		}
+
+		&--banner-coupon {
+
+			@include lg {
+				grid-template-columns: 1fr;
+				gap: 15px;
+				order: 1;
+				padding: 40px;
+				background: var(--coupon-banner-color);
+			}
+
+			&::before {
+
+				@include lg {
+					right: 20px;
+					left: auto;
+					width: auto;
+					height: 250px;
+					transform: none;
+				}
+			}
+
+		}
+
+		&--banner-middle {
+			grid-row: 5/6;
+		}
+
+		&--banner-last {
+			order: 1;
 		}
 	}
 }

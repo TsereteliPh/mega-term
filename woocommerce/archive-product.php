@@ -42,7 +42,7 @@ do_action( 'woocommerce_before_main_content' );
 
 	<div class="container catalog__container">
 		<div class="catalog__content">
-			<?php dynamic_sidebar( 'catalog_sidebar' ); ?>
+			<?php dynamic_sidebar( 'catalog_sidebar' ); // Added filter dynamic_sidebar_params in woocommerce.php ?>
 
 			<div class="catalog__products">
 				<?php if ( woocommerce_product_loop() ) : ?>

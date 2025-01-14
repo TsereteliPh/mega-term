@@ -19,5 +19,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $catalog_view = $_COOKIE['woocommerce_catalog_flex'] ?? null;
+
+$product_count = wp_count_posts( 'product' )->publish;
+$catalog_banner = get_field( 'big_banner', wc_get_page_id( 'shop' ) );
+$banner_class = 'catalog__item catalog__item--banner catalog__item--banner-' . $catalog_banner['type'];
+$banner_class .= $product_count < 12 ? ' catalog__item--banner-last' : ' catalog__item--banner-middle';
 ?>
 <ul class="reset-list catalog__list<?php echo $catalog_view ? ' catalog__list--flex' : ''; ?>">
+	<?php get_template_part( '/layouts/partials/promos/' . $catalog_banner['type'], null, array(
+		'class' => $banner_class,
+		'banner' => $catalog_banner['banner'],
+	) ); ?>

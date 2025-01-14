@@ -180,6 +180,24 @@ function adem_account_menu_items( $menu_links ) {
 	return $menu_links;
 }
 
+// Add small banner to catalog-filters sidebar
+add_filter( 'dynamic_sidebar_params', 'add_custom_content_to_sidebar' );
+function add_custom_content_to_sidebar( $params ) {
+	static $is_custom_content_added = false;
+
+	$small_banner = get_field( 'small_banner', wc_get_page_id( 'shop' ) );
+
+	if ( $params[0]['id'] === 'catalog_sidebar' && ! $is_custom_content_added && $small_banner ) {
+		get_template_part( '/layouts/partials/promos/small-banner', null, array(
+			'class' => 'catalog__filters-banner',
+			'banner' => $small_banner,
+		) );
+		$is_custom_content_added = true;
+	}
+
+    return $params;
+}
+
 // ---------------------------------------------------------------- Functions
 
 // Product quantity in cart by ID
