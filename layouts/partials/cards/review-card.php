@@ -38,7 +38,7 @@
 
 					<button class="review-card__link" type="button" data-fancybox data-src="#review-text-<?php the_ID(); ?>">Читать далее</button>
 
-					<div class="review-card__modal" id="review-text-<?php the_ID(); ?>">
+					<div class="modal review-card__modal" id="review-text-<?php the_ID(); ?>">
 						<div class="review-card__modal-text"><?php echo $text; ?></div>
 					</div>
 				<?php else : ?>

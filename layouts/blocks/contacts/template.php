@@ -1,8 +1,9 @@
 <?php
 	$img = get_sub_field( 'img' );
-	$offices = get_sub_field( 'offices' );
+	$contacts = get_field( 'contacts', 'options' );
+	$offices = $contacts['officies'];
 	$socials = get_field( 'socials', 'options' );
-	$map = get_sub_field( 'map' );
+	$map = $contacts['map'];
 ?>
 <section class="contacts">
 	<div class="container">

@@ -13,7 +13,7 @@
 	">
 		<?php if ( $img ) : ?>
 			<div class="image-text__img">
-				<?php echo wp_get_attachment_image( $img, 'full', false ); ?>
+				<?php echo wp_get_attachment_image( $img, 'large', false ); ?>
 			</div>
 		<?php endif; ?>
 

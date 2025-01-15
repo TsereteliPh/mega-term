@@ -31,6 +31,7 @@
 		max-width: 930px;
 		min-height: 450px;
 		overflow: hidden;
+		background: var(--bg-tertiary) url(assets/images/callback-img.jpg) no-repeat top left / auto 100%;
 
 		@include md {
 			max-width: 800px;
@@ -40,39 +41,7 @@
 		@include sm {
 			align-items: center;
 			max-width: fit-content;
-		}
-
-		&::before {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 25%;
-			height: 100%;
-			background: #121d2e;
-			content: "";
-
-			@include sm {
-				display: none;
-			}
-		}
-
-		&::after {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 440px;
-			height: auto;
-			aspect-ratio: 1/1;
-			background: url(assets/images/callback-img.png) no-repeat 50% / contain;
-			content: "";
-
-			@include md {
-				width: 360px;
-			}
-
-			@include sm {
-				display: none;
-			}
+			background: var(--bg-tertiary);
 		}
 
 		.modal__info,

@@ -42,21 +42,32 @@ $attributes = array_splice( $attributes, 0, 3 );
 $sku = $product->get_sku();
 ?>
 <li <?php wc_product_class( $product_classes, $product ); ?>>
-	<div class="product-card__flashes">
-		<?php
-			$price = $product->get_regular_price();
-			$sale_price = $product->get_sale_price();
-		?>
+	<?php
+		$price = $product->get_regular_price();
+		$sale_price = $product->get_sale_price();
+		$bestseller = get_field( 'bestseller' );
 
-		<?php if ( $price && $sale_price ) : ?>
-			<div class="product-card__flash product-card__flash--sale">
-				<?php
-					$percent = round( ( $price - $sale_price ) * 100 / $price );
-					echo '-' . $percent . ' %';
-				?>
+		if ( ( $price && $sale_price ) || $bestseller ) :
+			?>
+
+			<div class="product-card__flashes">
+				<?php if ( $price && $sale_price ) : ?>
+					<div class="product-card__flash product-card__flash--sale">
+						<?php
+							$percent = round( ( $price - $sale_price ) * 100 / $price );
+							echo '-' . $percent . ' %';
+						?>
+					</div>
+				<?php endif; ?>
+
+				<?php if ( $bestseller ) : ?>
+					<div class="product-card__flash product-card__flash--bestseller">ХИТ!</div>
+				<?php endif; ?>
 			</div>
-		<?php endif; ?>
-	</div>
+
+			<?php
+		endif;
+	?>
 
 	<?php if ( is_user_logged_in() ) : ?>
 		<button

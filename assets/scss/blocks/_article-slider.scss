@@ -1,5 +1,8 @@
 .article-slider {
-	overflow: hidden;
+
+	@include sm {
+		overflow: hidden;
+	}
 
 	&__title {
 

@@ -84,6 +84,29 @@ acf_add_local_field_group(array(
 			),
 		),
 		array(
+			'key' => 'field_6787c58a7b7b7',
+			'label' => 'Хит продаж',
+			'name' => 'bestseller',
+			'aria-label' => '',
+			'type' => 'true_false',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '20',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => '',
+			'default_value' => 0,
+			'allow_in_bindings' => 0,
+			'ui_on_text' => '',
+			'ui_off_text' => '',
+			'ui' => 1,
+			'style' => '',
+			'acfe_field_group_condition' => 0,
+		),
+		array(
 			'key' => 'field_67570715b7b70',
 			'label' => 'Гарантия',
 			'name' => 'product_guarantee',
@@ -93,7 +116,7 @@ acf_add_local_field_group(array(
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array(
-				'width' => '',
+				'width' => '80',
 				'class' => '',
 				'id' => '',
 			),
@@ -290,7 +313,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1733914745,
+	'modified' => 1736951261,
 ));
 
 endif;

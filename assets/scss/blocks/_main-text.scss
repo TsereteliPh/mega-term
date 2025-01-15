@@ -185,6 +185,21 @@
 			.main-text__text-content::before {
 				height: 100px;
 			}
+
+			.main-text__text-btn {
+
+				&-more {
+					display: block;
+				}
+
+				&-less {
+					display: none;
+				}
+
+				svg {
+					transform: none;
+				}
+			}
 		}
 	}
 
@@ -211,5 +226,13 @@
 		font-weight: 300;
 		font-family: var(--font-secondary);
 		transition: var(--transition);
+
+		&-more {
+			display: none;
+		}
+
+		svg {
+			transform: rotate(-90deg);
+		}
 	}
 }

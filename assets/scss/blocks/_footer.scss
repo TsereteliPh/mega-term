@@ -115,6 +115,8 @@
 		@include xs {
 			display: flex;
 			flex-direction: column;
+			justify-self: center;
+			max-width: 400px;
 		}
 	}
 
@@ -164,7 +166,7 @@
 		padding-right: 180px;
 
 		@include xs {
-			padding-right: 160px;
+			padding-right: 60px;
 		}
 	}
 
@@ -178,13 +180,27 @@
 
 		@include xs {
 			padding: 10px 20px;
-			font-size: 12px;
 		}
 
 		@include mouse {
 
 			&:hover {
 				transform: none;
+			}
+		}
+
+		span {
+
+			@include xs {
+				display: none;
+			}
+		}
+
+		svg {
+			display: none;
+
+			@include xs {
+				display: block;
 			}
 		}
 	}

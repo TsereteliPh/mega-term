@@ -47,8 +47,9 @@
 				<div class="main-text__text">
 					<div class="main-text__text-content"><?php echo $text; ?></div>
 
-					<button class="btn btn--thin btn-show-more main-text__text-btn" type="button">
-						Читать далее
+					<button class="hidden btn btn--thin btn-show-more main-text__text-btn" type="button">
+						<span class="main-text__text-btn-more">Читать далее</span>
+						<span class="main-text__text-btn-less">Скрыть</span>
 						<svg width="11" height="11"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-small"></use></svg>
 					</button>
 				</div>

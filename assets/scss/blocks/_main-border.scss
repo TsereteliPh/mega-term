@@ -3,6 +3,7 @@
 	border: 1px solid var(--fc-gray);
 	border-radius: 10px;
 	transition: var(--transition);
+	transition: border-color 0.3s ease;
 
 	@include mouse {
 

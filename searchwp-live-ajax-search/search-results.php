@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="header__search-thumb">
 				<?php
 					if ( has_post_thumbnail() ) {
-						the_post_thumbnail();
+						the_post_thumbnail( 'medium' );
 					} else {
 						echo wp_get_attachment_image( 24, 'medium', false );
 					}

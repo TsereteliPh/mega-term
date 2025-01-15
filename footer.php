@@ -2,6 +2,7 @@
 
 <?php
 	$slogan = get_field( 'slogan', 'options' );
+	$mailing_text = get_field( 'footer_mailing', 'options' );
 	$opening_hours = get_field( 'opening_hours', 'options' );
 	$tel = get_field( 'tel', 'options' );
 	$email = get_field( 'email', 'options' );
@@ -43,16 +44,19 @@
 			<div class="footer__mailing">
 				<img src="<?php echo get_template_directory_uri(); ?>/assets/images/footer-mailing.jpg" class="footer__mailing-img" alt="Иконка письма" width="127" height="115">
 
-				<div class="footer__mailing-text">
-					<span>Скидка 5%</span> за подписку на наши новости о новинках и акциях!
-				</div>
+				<?php if ( $mailing_text ) : ?>
+					<div class="footer__mailing-text"><?php echo $mailing_text; ?></div>
+				<?php endif; ?>
 
 				<form method="POST" class="footer__mailing-form" name="Рассылка">
 					<input type="email" class="input footer__mailing-input" name="client_email" placeholder="E-mail" required>
 
 					<input type="text" name="page_request" class="hidden" value="<?php echo is_archive() ? get_the_archive_title() : get_the_title(); ?>">
 
-                    <button type="submit" class="btn footer__mailing-submit">Подписаться</button>
+                    <button type="submit" class="btn footer__mailing-submit" aria-label="Подписаться">
+						<span>Подписаться</span>
+						<svg width="12" height="12"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-small"></use></svg>
+					</button>
 
 					<?php wp_nonce_field( 'Рассылка', 'form-mailing-nonce' ); ?>
 				</form>

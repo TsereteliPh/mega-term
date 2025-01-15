@@ -707,9 +707,8 @@ function mainTextHeightHandler() {
 		if (textContent.offsetHeight > 350) {
             textBlock.classList.add('overflow');
 			textContent.style.maxHeight = 350 + 'px';
-        } else {
-			btn.classList.add('hidden');
-		}
+			btn.classList.remove('hidden');
+        }
 
 		btn.addEventListener('click', function() {
             textBlock.classList.toggle('overflow');

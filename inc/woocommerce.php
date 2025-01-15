@@ -349,7 +349,7 @@ function adem_layered_nav_term_html( $term_html, $term, $link, $count ) {
 
 	$term_html = sprintf(
 		'<a rel="nofollow" class="square-checkbox" href="%1$s">
-			<input type="checkbox" class="hidden square-checkbox__input" %2$s>
+			<input type="checkbox" class="square-checkbox__input" %2$s>
 			<span class="square-checkbox__switcher"></span>
 			<span class="square-checkbox__text">%3$s</span>
 		</a>',

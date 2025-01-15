@@ -43,7 +43,7 @@
 		<input type="tel" class="input modal__input" name="client_tel" placeholder="+7 ( ___ ) - ___ - __ - __" required>
 
 		<label class="square-checkbox modal__policy">
-			<input type="checkbox" class="hidden square-checkbox__input" checked required>
+			<input type="checkbox" class="square-checkbox__input" checked required>
 
 			<span class="square-checkbox__switcher"></span>
 
@@ -71,7 +71,7 @@
 		<textarea class="input modal__textarea" name="client_message" placeholder="Ваш вопрос" required></textarea>
 
 		<label class="square-checkbox modal__policy">
-			<input type="checkbox" class="hidden square-checkbox__input" checked required>
+			<input type="checkbox" class="square-checkbox__input" checked required>
 
 			<span class="square-checkbox__switcher"></span>
 
@@ -108,7 +108,7 @@
 			</label>
 
 			<label class="square-checkbox modal__policy">
-				<input type="checkbox" class="hidden square-checkbox__input" checked required>
+				<input type="checkbox" class="square-checkbox__input" checked required>
 
 				<span class="square-checkbox__switcher"></span>
 
@@ -144,7 +144,7 @@
 			<input type="password" class="input modal__input" id="registration-confirm-password" name="confirm-password" placeholder="Повторите пароль" required>
 
 			<label class="square-checkbox modal__policy">
-				<input type="checkbox" class="hidden square-checkbox__input" checked required>
+				<input type="checkbox" class="square-checkbox__input" checked required>
 
 				<span class="square-checkbox__switcher"></span>
 
