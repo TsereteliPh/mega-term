@@ -262,6 +262,14 @@
 		}
 	}
 
+	&__content-excerpt {
+		line-height: 1.4;
+
+		@include xs {
+			line-height: 1.25;
+		}
+	}
+
 	&__summary {
 		width: 100%;
 		max-width: 300px;
@@ -457,6 +465,14 @@
 		@include xs {
 			margin-bottom: 10px;
 			font-size: 14px;
+		}
+	}
+
+	&__tabs-info {
+		line-height: 1.4;
+
+		@include xs {
+			line-height: 1.25;
 		}
 	}
 

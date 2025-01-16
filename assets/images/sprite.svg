@@ -71,6 +71,10 @@
 		<path stroke="currentColor" stroke-width="1.5" d="M9 4a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1Z"/>
 		<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 13v4M16 13v4M12 13v4"/>
 	</symbol>
+	<symbol fill="none" viewBox="0 0 18 18" id="icon-play">
+		<path fill="currentColor" d="M18 9A9 9 0 1 1 0 9a9 9 0 0 1 18 0Z"/>
+		<path fill="#fff" d="m12 9-5 3V6l5 3Z"/>
+	</symbol>
 	<symbol fill="none" viewBox="0 0 14 15" id="icon-protect">
 		<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m4.75 7.171 1.5 1.415 3.375-3.183M13 7.525c0 3.472-4.015 5.997-5.477 6.8-.166.092-.249.138-.366.161a.903.903 0 0 1-.314 0c-.117-.024-.2-.07-.366-.16C5.015 13.521 1 10.995 1 7.524V4.142c0-.565 0-.848.098-1.091.087-.215.227-.406.41-.558.207-.172.488-.271 1.05-.47L6.577.601c.157-.055.235-.083.315-.094a.795.795 0 0 1 .214 0c.08.011.158.039.314.094l4.022 1.422c.561.199.842.298 1.049.47.182.152.323.343.41.558.098.243.098.526.098 1.091v3.383Z"/>
 	</symbol>

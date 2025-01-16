@@ -25,6 +25,7 @@ if ( ! function_exists( 'wc_get_gallery_image_html' ) ) {
 global $product;
 
 $gallery = $product->get_gallery_image_ids();
+$video = get_field( 'product_video', $product->get_id() );
 $variations = false;
 if ( $product->is_type('variable' ) ) $variations = $product->get_available_variations();
 ?>
@@ -59,6 +60,16 @@ if ( $product->is_type('variable' ) ) $variations = $product->get_available_vari
 							</div>
 						<?php endif; ?>
 					<?php endforeach; ?>
+				<?php endif; ?>
+
+				<?php if ( $video ) : ?>
+					<div class="product__gallery-thumb-img product__gallery-thumb-img--video swiper-slide">
+						<?php echo wp_get_attachment_image( $video['preview'], 'medium', false ); ?>
+
+						<button class="btn-play" type="button">
+							<svg width="18" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-play"></use></svg>
+						</button>
+					</div>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -108,6 +119,18 @@ if ( $product->is_type('variable' ) ) $variations = $product->get_available_vari
 						</a>
 					<?php endif; ?>
 				<?php endforeach; ?>
+			<?php endif; ?>
+
+			<?php if ( $video ) : ?>
+				<a href="<?php echo $video[$video['type']]; ?>" class="product__gallery-big-link product__gallery-big-link--video swiper-slide" data-fancybox="product-gallery">
+					<?php echo wp_get_attachment_image( $video['preview'], 'large', false, array(
+						'class' => 'product__gallery-big-image'
+					) ); ?>
+
+					<button class="btn-play" type="button">
+						<svg width="35" height="35"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-play"></use></svg>
+					</button>
+				</a>
 			<?php endif; ?>
 		</div>
 	</div>
