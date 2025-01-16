@@ -1,4 +1,4 @@
-<li class="main-border main-border--half article-card <?php echo $args['class']; ?>">
+<li class="main-border main-border--half main-border--hover article-card <?php echo $args['class']; ?>">
 	<div class="article-card__img">
 		<?php
 			if ( get_post_thumbnail_id() ) {

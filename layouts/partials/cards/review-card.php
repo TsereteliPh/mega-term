@@ -4,7 +4,7 @@
 	$date = get_field( 'date' );
 	$terms = get_the_terms( $post, 'review-category' );
 ?>
-<li class="main-border review-card <?php echo $args['class']; ?>">
+<li class="main-border main-border--brackets main-border--hover review-card <?php echo $args['class']; ?>">
 	<?php if ( $args['cat'] ) : ?>
 		<div class="review-card__cat"><?php echo $terms[0]->name; ?></div>
 	<?php endif; ?>
