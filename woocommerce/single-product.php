@@ -72,6 +72,7 @@ if ( $upsells ) {
 
 	get_template_part( '/layouts/blocks/product-slider/template', null, array(
 		'title' => array(
+			'small_text' => '',
 			'type' => 'h2',
 			'text' => 'СОПУТСТВУЮЩИЕ ТОВАРЫ',
 			'link' => array(
@@ -85,6 +86,7 @@ if ( $upsells ) {
 
 get_template_part( '/layouts/blocks/recently-viewed/template', null, array(
 	'title' => array(
+		'small_text' => '',
 		'type' => 'h2',
 		'text' => 'ВЫ НЕДАВНО',
 		'indent' => 'СМОТРЕЛИ',

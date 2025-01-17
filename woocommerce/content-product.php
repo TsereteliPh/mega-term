@@ -30,7 +30,7 @@ if ( $catalog_view && ( is_shop() || is_product_category() ) ) $product_classes 
 if ( $args['class'] ) $product_classes .= ' ' . $args['class'];
 
 $attributes = $product->get_attributes();
-$brands = $attributes['pa_brands'];
+$brands = $attributes['pa_brands'] ?? null;
 $attributes = array_filter(
 	$attributes,
 	function( $key ) {
@@ -40,6 +40,7 @@ $attributes = array_filter(
 );
 $attributes = array_splice( $attributes, 0, 3 );
 $sku = $product->get_sku();
+$no_woocommerce = $args['no_woocommerce'] ?? null;
 ?>
 <li <?php wc_product_class( $product_classes, $product ); ?>>
 	<?php
@@ -86,7 +87,7 @@ $sku = $product->get_sku();
 	</div>
 
 	<div class="product-card__info">
-		<?php if ( $brands['options'] ) : ?>
+		<?php if ( $brands && $brands['options'] ) : ?>
 			<div class="product-card__brands">
 				<?php foreach ( $brands['options'] as $key => $brand ) : ?>
 					<?php $term = get_term_by( 'id', $brand, 'pa_brands' ); ?>
@@ -152,7 +153,7 @@ $sku = $product->get_sku();
 		</div>
 
 		<div class="product-card__buttons">
-			<?php if ( $args['no-woocommerce'] ) : ?>
+			<?php if ( $no_woocommerce ) : ?>
 				<a href="<?php the_permalink(); ?>" class="btn product-card__add-to-cart product-card__add-to-cart--variable">Подробнее</a>
 			<?php else : ?>
 				<?php

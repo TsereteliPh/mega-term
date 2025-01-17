@@ -1,5 +1,5 @@
 <?php
-	$recently_viewed = $_COOKIE['woocommerce_recently_viewed'];
+	$recently_viewed = $_COOKIE['woocommerce_recently_viewed'] ?? null;
 	if ( ! empty( $recently_viewed ) ) {
 		$title = ! empty( $args['title'] ) ? $args['title'] : get_sub_field( 'title' );
 		$products = explode( '|', $recently_viewed );

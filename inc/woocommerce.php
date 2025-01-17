@@ -3,6 +3,8 @@ remove_action( 'woocommerce_before_main_content','woocommerce_output_content_wra
 remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0 );
 remove_action( 'woocommerce_before_main_content','woocommerce_output_content_wrapper_end', 10, 0 );
 
+remove_action( 'woocommerce_after_main_content','woocommerce_output_content_wrapper_end', 10, 0 );
+
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
@@ -278,7 +280,7 @@ function adem_product_cat_same_shop_edit_success( $term_id, $taxonomy ) {
 
 // Recursive function for header cats
 function adem_recursive_header_categories( $parent_id = 0, $level = 0 ) {
-	$current_term = get_queried_object();
+	$current_term = ( is_archive() && ! is_shop() ) ? get_queried_object() : '';
 
 	$categories = get_terms( [
 		'taxonomy' => 'product_cat',
@@ -302,12 +304,12 @@ function adem_recursive_header_categories( $parent_id = 0, $level = 0 ) {
 			}
 
 			$link_classes = 'header__cats-item-link header__cats-item-link--level-' . $level;
-			if ( $current_term->term_id === $category->term_id ) $link_classes .= ' current';
+			if ( ! empty( $current_term ) && $current_term->term_id === $category->term_id ) $link_classes .= ' current';
 
 			echo '<a href="' . get_term_link( $category ) . '" class="' . $link_classes . '">';
 
 			if ( $level === 0 ) {
-				$cat_img = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true );
+				$cat_img = get_term_meta( $category->term_id, 'thumbnail_id', true );
 				echo '<div class="header__cats-item-img">';
 				echo wp_get_attachment_image( $cat_img ? $cat_img : 24, 'thumbnail', false );
 				echo '</div>';

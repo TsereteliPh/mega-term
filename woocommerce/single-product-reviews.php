@@ -23,6 +23,7 @@ if ( ! comments_open() ) {
 	return;
 }
 
+$account_page_url = wc_get_page_permalink( 'myaccount' );
 ?>
 <div id="reviews" class="product__reviews">
 	<h2 class="product__tabs-title"><?php echo esc_html_e( 'Reviews', 'woocommerce' ); ?></h2>
@@ -105,7 +106,6 @@ if ( ! comments_open() ) {
 				$comment_form['fields'][ $key ] = $field_html;
 			}
 
-			$account_page_url = wc_get_page_permalink( 'myaccount' );
 			if ( $account_page_url ) {
 				/* translators: %s opening and closing link tags respectively */
 				$comment_form['must_log_in'] = '<div class="product__reviews-verification">Для отправки отзыва вам необходимо <a href="' . esc_url( $account_page_url ) . '">авторизоваться</a>' . '</div>';

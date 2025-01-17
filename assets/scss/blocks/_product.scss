@@ -162,7 +162,7 @@
 		border: 1px solid transparent;
 		border-radius: 10px;
 		cursor: pointer;
-		transition: var(--transition);
+		transition: border-color 0.3s ease;
 
 		@include mouse {
 

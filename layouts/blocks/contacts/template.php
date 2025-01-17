@@ -22,20 +22,20 @@
                     <li class="contacts__item">
 						<div class="contacts__item-label"><?php echo $office['label']; ?></div>
 
-						<?php if ( $office['tel'] ) : ?>
+						<?php if ( ! empty( $office['tel'] ) ) : ?>
 							<a href="tel:<?php echo preg_replace( '/[^0-9,+]/', '', $office['tel'] ); ?>" class="contacts__item-tel"><?php echo $office['tel']; ?></a>
 						<?php endif; ?>
 
 						<button class="contacts__item-callback" type="button" data-fancybox data-src="#callback">Обратный звонок</button>
 
-						<?php if ( $office['email'] ) : ?>
+						<?php if ( ! empty( $office['email'] ) ) : ?>
 							<a href="mailto:<?php echo $office['email']; ?>" class="contacts__item-email">
 								<svg width="23" height="17"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-email"></use></svg>
 								<?php echo $office['email']; ?>
 							</a>
 						<?php endif; ?>
 
-						<?php if ( $office['socials'] && $socials ) : ?>
+						<?php if ( ! empty( $office['socials'] ) && $socials ) : ?>
 							<div class="contacts__item-socials">
 								<?php foreach ( $socials as $social ) : ?>
 									<a href="<?php echo $social['link']; ?>" class="contacts__social" target="_blank">
@@ -45,14 +45,14 @@
 							</div>
 						<?php endif; ?>
 
-						<?php if ( $office['working_hours'] ) : ?>
+						<?php if ( ! empty( $office['working_hours'] ) ) : ?>
 							<div class="contacts__item-hours">
 								Контактный-центр:
 								<span><?php echo $office['working_hours']; ?></span>
 							</div>
 						<?php endif; ?>
 
-						<?php if ( $office['address'] ) : ?>
+						<?php if ( ! empty( $office['address'] ) ) : ?>
 							<address class="contacts__item-address"><?php echo $office['address']; ?></address>
 						<?php endif; ?>
                     </li>

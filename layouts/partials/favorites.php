@@ -13,7 +13,7 @@
 			) );
 
 			$user_favorites = get_user_meta( get_current_user_id(), 'favorites', false );
-			$user_favorites = json_decode( $user_favorites[0], true );
+			$user_favorites = json_decode( $user_favorites ? $user_favorites[0] : '', true );
 
 			if ( $user_favorites ) :
 		?>
@@ -33,7 +33,7 @@
 							foreach ( $posts as $post ) {
 								get_template_part( '/woocommerce/content-product', null, array(
 									'class' => 'favorites__item',
-									'no-commerce' => true
+									'no-woocommerce' => true
 								) );
 							}
 						} else {
@@ -42,6 +42,7 @@
 
 								get_template_part( '/woocommerce/content-product', null, array(
 									'class' => 'favorites__item',
+									'no-woocommerce' => true
 								) );
 							}
 
