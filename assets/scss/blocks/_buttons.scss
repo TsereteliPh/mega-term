@@ -70,7 +70,7 @@
 		color: var(--fc-dark);
 		font-weight: 300;
 		background: none;
-		border: 1px solid #d9d9d9;
+		border: 1px solid var(--fc-light-gray);
 
 		@include mouse {
 

@@ -160,12 +160,12 @@
 
 		.square-checkbox__switcher {
 			background: var(--bg-secondary);
-			border-color: #d9d9d9;
+			border-color: var(--fc-light-gray);
 		}
 
 		.square-checkbox__input:checked + .square-checkbox__switcher {
 			background: var(--bg-secondary);
-			border-color: #d9d9d9;
+			border-color: var(--fc-light-gray);
 
 			&::before {
 				border-color: var(--primary);

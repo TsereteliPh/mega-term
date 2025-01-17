@@ -589,7 +589,7 @@
 
 		&--cats {
 			height: calc(100% - 180px);
-			border-bottom: 1px solid #d9d9d9;
+			border-bottom: 1px solid var(--fc-light-gray);
 
 			@include sm {
 				height: calc(100% - 160px);
@@ -648,7 +648,7 @@
 			left: 33.3%;
 			width: 1px;
 			height: calc(100% + 1px);
-			background: #d9d9d9;
+			background: var(--fc-light-gray);
 			content: "";
 
 			@include md {
