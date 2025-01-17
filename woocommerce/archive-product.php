@@ -71,7 +71,7 @@ do_action( 'woocommerce_before_main_content' );
 								<svg width="20" height="20"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-view-flex"></use></svg>
 							</label>
 
-							<button class="hidden js-submit" type="submit"></button>
+							<button class="hidden" type="submit"></button>
 						</form>
 
 						<button class="catalog__button-filter" type="button" data-fancybox data-src="#filters">

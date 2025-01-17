@@ -264,4 +264,5 @@ require 'inc/remove-from-favorite.php';
 require 'inc/svg.php';
 require 'inc/tiny-mce.php';
 require 'inc/traffic.php';
+require 'inc/wc-catalog-view.php';
 require 'inc/woocommerce.php';

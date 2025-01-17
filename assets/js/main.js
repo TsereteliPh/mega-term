@@ -229,6 +229,64 @@ function changeInputQuantity(form, dispatch = false) {
 
 // ---------------------------------------------------------------- Ajax
 
+function changeCatalogView() {
+	const catalogForm = document.querySelector('.catalog__view');
+
+	if (!catalogForm) return;
+
+	const radioBtns = catalogForm.querySelectorAll('input[name="catalog-view"]');
+	let update_cart;
+
+	radioBtns.forEach(radio => {
+		radio.addEventListener('change', function (e) {
+			if (update_cart != null) clearTimeout(update_cart);
+
+			update_cart = setTimeout(() => {
+				this.closest('form').querySelector('button').click();
+			}, 1000);
+		});
+	});
+
+	catalogForm.addEventListener('submit', function (e) {
+		e.preventDefault();
+		const catalogList = document.querySelector('.catalog__list');
+		const catalogItems = catalogList.querySelectorAll('.catalog__item:not(.catalog__item--banner)');
+		const noticeWrapper = document.querySelector('.woocommerce-notices-wrapper');
+
+		catalogItems.forEach(item => item.classList.add('loader'));
+
+		let formData = new FormData(this);
+		formData.append('action', 'wc_catalog_view');
+
+		const response = fetch(adem_ajax.url, {
+			method: 'POST',
+			body: formData
+		})
+		.then(response => response.text())
+		.then(data => {
+			try {
+				data = JSON.parse(data);
+			} catch (e) {
+				noticeWrapper.innerHTML = data;
+			}
+			if (data.status == 'success') {
+				if (data.view == 'flex') {
+					catalogList.classList.add('catalog__list--flex');
+					catalogItems.forEach(item => item.classList.add('product-card--large'));
+				} else {
+					catalogList.classList.remove('catalog__list--flex');
+					catalogItems.forEach(item => item.classList.remove('product-card--large'));
+				}
+
+				catalogItems.forEach(item => item.classList.remove('loader'));
+			}
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		});
+	});
+}
+
 function favorites() {
 	const favBtns = document.querySelectorAll('.btn-fav');
 	const favCounter = document.querySelector('.header__fav-counter');
@@ -786,6 +844,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	tabs();
 
 	// Ajax
+	changeCatalogView();
 	favorites();
 	sendForm();
 	showMorePosts();

@@ -314,6 +314,15 @@
 			display: flex;
 			flex-wrap: wrap;
 		}
+
+		&--flex {
+			display: flex;
+			flex-direction: column;
+
+			@include lg {
+				flex-wrap: nowrap;
+			}
+		}
 	}
 
 	&__item {
@@ -326,6 +335,14 @@
 
 		@include sm {
 			max-width: 100%;
+		}
+
+		&.product-card--large {
+
+			@include lg {
+				flex-basis: 100%;
+				max-width: none;
+			}
 		}
 
 		&--banner {

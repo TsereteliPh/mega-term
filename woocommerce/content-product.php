@@ -26,7 +26,7 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 
 $product_classes = 'main-border main-border--hover product-card';
 $catalog_view = $_COOKIE['woocommerce_catalog_flex'] ?? null;
-if ( $catalog_view && ( is_shop() || is_product_category() ) ) $product_classes .= ' product-card--flex';
+if ( $catalog_view && ( is_shop() || is_product_category() ) ) $product_classes .= ' product-card--large';
 if ( $args['class'] ) $product_classes .= ' ' . $args['class'];
 
 $attributes = $product->get_attributes();
@@ -85,54 +85,70 @@ $sku = $product->get_sku();
 		<?php echo $product->get_image( 'large' ); ?>
 	</div>
 
-	<?php if ( $brands['options'] ) : ?>
-		<div class="product-card__brands">
-			<?php foreach ( $brands['options'] as $key => $brand ) : ?>
-				<?php $term = get_term_by( 'id', $brand, 'pa_brands' ); ?>
-
-				<a href="<?php echo get_term_link( $term ); ?>" class="product-card__brand">
-					<?php echo $term->name . ( $key + 1 !== count( $brands['options'] ) ? ', ' : '' ); ?>
-				</a>
-			<?php endforeach; ?>
-		</div>
-	<?php endif; ?>
-
-	<?php if ( $sku ) : ?>
-		<div class="product-card__sku"><?php echo 'Арт. ' . $sku; ?></div>
-	<?php endif; ?>
-
-	<a href="<?php the_permalink(); ?>" class="product-card__link"><?php the_title(); ?></a>
-
-	<?php if ( $attributes ) : ?>
-		<ul class="reset-list product-card__attributes">
-			<?php foreach ( $attributes as $attribute ) : ?>
-					<?php
-						if ( $attribute['id'] ) {
-							$term = wc_get_attribute( $attribute['id'] );
-							$name = $term->name;
-							$values = array();
-
-							foreach ( $attribute['options'] as $option ) {
-								$option_term = get_term_by( 'id', $option, $attribute['name'] );
-								array_push( $values, $option_term->name );
-							}
-						} else {
-							$name = $attribute['name'];
-							$values = $attribute['options'];
-						}
-					?>
-				<li class="product-card__attribute">
-					<div class="product-card__attribute-label"><?php echo $name; ?></div>
-
-					<div class="product-card__attribute-values"><?php echo implode( ', ', $values ); ?></div>
-				</li>
-			<?php endforeach; ?>
-		</ul>
-	<?php endif; ?>
-
 	<div class="product-card__info">
+		<?php if ( $brands['options'] ) : ?>
+			<div class="product-card__brands">
+				<?php foreach ( $brands['options'] as $key => $brand ) : ?>
+					<?php $term = get_term_by( 'id', $brand, 'pa_brands' ); ?>
+
+					<a href="<?php echo get_term_link( $term ); ?>" class="product-card__brand">
+						<?php echo $term->name . ( $key + 1 !== count( $brands['options'] ) ? ', ' : '' ); ?>
+					</a>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $sku ) : ?>
+			<div class="product-card__sku"><?php echo 'Арт. ' . $sku; ?></div>
+		<?php endif; ?>
+
+		<a href="<?php the_permalink(); ?>" class="product-card__link"><?php the_title(); ?></a>
+
+		<?php if ( $attributes ) : ?>
+			<ul class="reset-list product-card__attributes">
+				<?php foreach ( $attributes as $attribute ) : ?>
+						<?php
+							if ( $attribute['id'] ) {
+								$term = wc_get_attribute( $attribute['id'] );
+								$name = $term->name;
+								$values = array();
+
+								foreach ( $attribute['options'] as $option ) {
+									$option_term = get_term_by( 'id', $option, $attribute['name'] );
+									array_push( $values, $option_term->name );
+								}
+							} else {
+								$name = $attribute['name'];
+								$values = $attribute['options'];
+							}
+						?>
+					<li class="product-card__attribute">
+						<div class="product-card__attribute-label"><?php echo $name; ?></div>
+
+						<div class="product-card__attribute-values"><?php echo implode( ', ', $values ); ?></div>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	</div>
+
+	<div class="product-card__commerce">
 		<div class="product-card__price<?php echo $product->is_type( 'variable' ) ? ' product-card__price--variable' : ''; ?>">
 			<?php echo $product->get_price_html(); ?>
+		</div>
+
+		<div class="product-card__commerce-buttons">
+			<?php if ( is_user_logged_in() ) : ?>
+				<button
+					class="btn-fav product-card__commerce-fav<?php echo adem_check_favorite( $product->get_id() ) ? ' active' : ''; ?>"
+					type="button"
+					aria-label="Добавить в избранное"
+					data-id="<?php echo $product->get_id(); ?>"
+					data-user="<?php echo get_current_user_id(); ?>"
+				>
+					<svg width="20" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-fav"></use></svg>
+				</button>
+			<?php endif; ?>
 		</div>
 
 		<div class="product-card__buttons">

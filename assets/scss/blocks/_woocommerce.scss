@@ -328,6 +328,7 @@
 		place-content: center;
 		width: fit-content;
 		height: auto;
+		min-height: 50px;
 		padding: 15px;
 		overflow: hidden;
 		color: var(--fc-light);
@@ -338,6 +339,18 @@
 		background: var(--fc-dark);
 		border-radius: 10px;
 		transition: var(--transition);
+	}
+
+	.product-card--large {
+
+		a.added_to_cart,
+		a.product-card__add-to-cart--variable {
+			width: 100%;
+
+			@include xs {
+				width: fit-content;
+			}
+		}
 	}
 
 	table.shop_table {
