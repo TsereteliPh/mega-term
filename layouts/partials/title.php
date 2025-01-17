@@ -1,40 +1,43 @@
 <?php
-if ( ! empty( $args['title']['text'] ) ) {
-	$classes = 'title';
-	if ( $args['title']['small-text'] ) $classes .= ' title--small-text';
+$title = $args['title'] ?? null;
+$small_text = ! empty( $title['small_text'] ) ? $title['small_text'] : '';
+$type = ! empty( $title['type'] ) ? $title['type'] : '';
+$text = ! empty( $title['text'] ) ? $title['text'] : '';
+$indent = ! empty( $title['indent'] ) ? $title['indent'] : '';
+$link_url = ! empty( $title['link']['url'] ) ? $title['link']['url'] : '';
+$link_target = ! empty( $title['link']['target'] ) ? $title['link']['target'] : '_self';
+$link_title = ! empty( $title['link']['title'] ) ? $title['link']['title'] : 'Подробнее';
 
-	$format = '<div class="' . $classes . ' %1$s">';
+$classes = 'title';
+if ( $small_text ) $classes .= ' title--small-text';
 
-	if ( $args['title']['small-text'] ) {
-		$format .= '<div class="title__small-text">%2$s</div>';
-	}
+if ( $title ) :
+	?>
 
-	$format .= '
-		<%3$s class="title__text">
-			%4$s
-			<span>%5$s</span>
-		</%3$s>
-	';
+	<div class="<?php echo $classes . ( ! empty( $args['class'] ) ? ' ' . $args['class'] : '' ); ?>">
+		<?php if ( $small_text ) : ?>
+			<div class="title__small-text"><?php echo $small_text; ?></div>
+		<?php endif; ?>
 
-	if ( $args['title']['link'] ) {
-		$format .= '
-			<a href="%6$s" class="btn btn--thin title__link" target="%7$s">
-				%8$s
-				<svg width="8" height="8"><use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#icon-arrow-small"></use></svg>
+		<?php
+			echo sprintf(
+				'<%1$s class="title__text">
+					%2$s
+					<span>%3$s</span>
+				</%1$s>',
+				$type,
+				$text,
+				$indent
+			);
+		?>
+
+		<?php if ( $link_url ) : ?>
+			<a href="<?php echo $link_url; ?>" class="btn btn--thin title__link" target="<?php echo $link_target; ?>">
+				<?php echo $link_title; ?>
+				<svg width="8" height="8"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-small"></use></svg>
 			</a>
-		';
-	}
+		<?php endif; ?>
+	</div>
 
-	$format .= '</div>';
-	echo sprintf(
-		$format,
-		$args['class'],
-		$args['title']['small-text'] ?? null,
-		$args['title']['type'],
-		$args['title']['text'],
-		$args['title']['indent'],
-		$args['title']['link']['url'] ?? null,
-		$args['title']['link']['target'] ?? null,
-		$args['title']['link']['title'] ?? null,
-	);
-}
+	<?php
+endif;
