@@ -229,6 +229,78 @@ function changeInputQuantity(form, dispatch = false) {
 
 // ---------------------------------------------------------------- Ajax
 
+function ajaxSearch() {
+    const search = document.querySelector('#search');
+    if (!search) return;
+
+    const searchInput = search.querySelector('.search-panel__input');
+    const searchResult = search.querySelector('.search-panel__result');
+    let timeout = null;
+    let controller = new AbortController();
+
+    searchInput.addEventListener('input', function () {
+        const querySearch = this.value.trim();
+        searchResult.innerHTML = '';
+        searchResult.classList.toggle('show', querySearch.length >= 3);
+
+        if (querySearch.length < 3) return;
+
+        searchResult.classList.add('loader');
+
+        clearTimeout(timeout);
+        controller.abort();
+        controller = new AbortController();
+
+        timeout = setTimeout(async () => {
+            try {
+                const response = await fetch(adem_ajax.url, {
+                    method: 'POST',
+                    headers: {
+						'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+					},
+                    body: new URLSearchParams({
+						action: 'search',
+						query: querySearch
+					}),
+                    signal: controller.signal,
+                });
+
+                const data = await response.json();
+                searchResult.classList.remove('loader');
+                searchResult.innerHTML = '';
+
+                if (data.status === 'success' && data.markup) {
+                    searchResult.classList.remove('no-result');
+                    searchResult.innerHTML = data.markup;
+                } else {
+                    const searchErr = document.createElement('div');
+                    searchErr.classList.add('search-panel__card');
+                    searchErr.textContent = data.message || 'Результатов не найдено';
+                    searchResult.classList.add('no-result');
+                    searchResult.appendChild(searchErr);
+                }
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('Ошибка:', error);
+                    Fancybox.show([{
+						src: '#failure',
+						type: 'inline'
+					}]);
+                }
+            }
+        }, 500);
+    });
+
+    search.addEventListener('focusout', function (e) {
+		if (!search.contains(e.relatedTarget)) {
+			clearTimeout(timeout);
+			controller.abort();
+			searchResult.classList.remove('show');
+			searchResult.innerHTML = '';
+		}
+    });
+}
+
 function changeCatalogView() {
 	const catalogForm = document.querySelector('.catalog__view');
 
@@ -844,6 +916,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	tabs();
 
 	// Ajax
+	ajaxSearch();
 	changeCatalogView();
 	favorites();
 	sendForm();

@@ -261,6 +261,7 @@ require 'inc/login.php';
 require 'inc/mail.php';
 require 'inc/registration.php';
 require 'inc/remove-from-favorite.php';
+require 'inc/search.php';
 require 'inc/svg.php';
 require 'inc/tiny-mce.php';
 require 'inc/traffic.php';
